@@ -34,7 +34,7 @@ public class Main extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
-        YamlConfiguration file = YamlConfiguration.loadConfiguration(getClass().getResourceAsStream("material.yml"));
+        YamlConfiguration file = YamlConfiguration.loadConfiguration(getClass().getResourceAsStream("/material.yml"));
         Set<String> respawns = file.getConfigurationSection("loc").getKeys(false);
         for (final String i : respawns) {
             final double x = file.getDouble("loc."+i+".x");
@@ -43,7 +43,7 @@ public class Main extends JavaPlugin implements Listener {
             materials.add(new Location(Bukkit.getWorlds().get(0), x, y, z));
         }
 
-        file = YamlConfiguration.loadConfiguration(getClass().getResourceAsStream("priority_material.yml"));
+        file = YamlConfiguration.loadConfiguration(getClass().getResourceAsStream("/priority_material.yml"));
         respawns = file.getConfigurationSection("loc").getKeys(false);
         for (final String i : respawns) {
             final double x = file.getDouble("loc."+i+".x");
