@@ -24,7 +24,7 @@ public enum ResourcesEnum {
     public final Material drop;
     public final byte dropData;
 
-    RessourcesEnum(Material block, byte blockData, Material drop, byte dropData) {
+    ResourcesEnum(Material block, byte blockData, Material drop, byte dropData) {
         this.block = block;
         this.blockData = blockData;
         this.drop = drop;
