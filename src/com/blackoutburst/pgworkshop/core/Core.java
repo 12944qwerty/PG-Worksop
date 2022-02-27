@@ -3,6 +3,8 @@ package com.blackoutburst.pgworkshop.core;
 import com.blackoutburst.pgworkshop.main.Main;
 import com.blackoutburst.pgworkshop.utils.Utils;
 import org.bukkit.Bukkit;
+import org.bukkit.Difficulty;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -13,7 +15,9 @@ public class Core {
         new BukkitRunnable() {
             @Override
             public void run() {
+                Bukkit.getWorlds().get(0).setDifficulty(Difficulty.PEACEFUL);
                 for (Player p : Bukkit.getOnlinePlayers()) {
+                    p.setGameMode(GameMode.SURVIVAL);
                     p.teleport(Main.gameSpawn);
                 }
             }
