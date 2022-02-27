@@ -1,0 +1,561 @@
+loc:
+  '0':
+    world: world
+    x: -1757
+    y: 42
+    z: 747
+    yaw: 0.0
+    pitch: 0.0
+  '1':
+    world: world
+    x: -1757
+    y: 42
+    z: 748
+    yaw: 0.0
+    pitch: 0.0
+  '2':
+    world: world
+    x: -1757
+    y: 42
+    z: 749
+    yaw: 0.0
+    pitch: 0.0
+  '3':
+    world: world
+    x: -1757
+    y: 42
+    z: 750
+    yaw: 0.0
+    pitch: 0.0
+  '4':
+    world: world
+    x: -1757
+    y: 42
+    z: 751
+    yaw: 0.0
+    pitch: 0.0
+  '5':
+    world: world
+    x: -1757
+    y: 40
+    z: 751
+    yaw: 0.0
+    pitch: 0.0
+  '6':
+    world: world
+    x: -1757
+    y: 40
+    z: 750
+    yaw: 0.0
+    pitch: 0.0
+  '7':
+    world: world
+    x: -1757
+    y: 40
+    z: 749
+    yaw: 0.0
+    pitch: 0.0
+  '8':
+    world: world
+    x: -1757
+    y: 40
+    z: 748
+    yaw: 0.0
+    pitch: 0.0
+  '9':
+    world: world
+    x: -1757
+    y: 40
+    z: 747
+    yaw: 0.0
+    pitch: 0.0
+  '10':
+    world: world
+    x: -1773
+    y: 40
+    z: 747
+    yaw: 0.0
+    pitch: 0.0
+  '11':
+    world: world
+    x: -1773
+    y: 40
+    z: 748
+    yaw: 0.0
+    pitch: 0.0
+  '12':
+    world: world
+    x: -1773
+    y: 40
+    z: 749
+    yaw: 0.0
+    pitch: 0.0
+  '13':
+    world: world
+    x: -1773
+    y: 40
+    z: 750
+    yaw: 0.0
+    pitch: 0.0
+  '14':
+    world: world
+    x: -1773
+    y: 40
+    z: 751
+    yaw: 0.0
+    pitch: 0.0
+  '15':
+    world: world
+    x: -1773
+    y: 42
+    z: 751
+    yaw: 0.0
+    pitch: 0.0
+  '16':
+    world: world
+    x: -1773
+    y: 42
+    z: 750
+    yaw: 0.0
+    pitch: 0.0
+  '17':
+    world: world
+    x: -1773
+    y: 42
+    z: 749
+    yaw: 0.0
+    pitch: 0.0
+  '18':
+    world: world
+    x: -1773
+    y: 42
+    z: 748
+    yaw: 0.0
+    pitch: 0.0
+  '19':
+    world: world
+    x: -1773
+    y: 42
+    z: 747
+    yaw: 0.0
+    pitch: 0.0
+  '20':
+    world: world
+    x: -1757
+    y: 46
+    z: 747
+    yaw: 0.0
+    pitch: 0.0
+  '21':
+    world: world
+    x: -1757
+    y: 46
+    z: 748
+    yaw: 0.0
+    pitch: 0.0
+  '22':
+    world: world
+    x: -1757
+    y: 46
+    z: 749
+    yaw: 0.0
+    pitch: 0.0
+  '23':
+    world: world
+    x: -1757
+    y: 46
+    z: 750
+    yaw: 0.0
+    pitch: 0.0
+  '24':
+    world: world
+    x: -1757
+    y: 46
+    z: 751
+    yaw: 0.0
+    pitch: 0.0
+  '25':
+    world: world
+    x: -1757
+    y: 48
+    z: 751
+    yaw: 0.0
+    pitch: 0.0
+  '26':
+    world: world
+    x: -1757
+    y: 48
+    z: 750
+    yaw: 0.0
+    pitch: 0.0
+  '27':
+    world: world
+    x: -1757
+    y: 48
+    z: 749
+    yaw: 0.0
+    pitch: 0.0
+  '28':
+    world: world
+    x: -1757
+    y: 48
+    z: 748
+    yaw: 0.0
+    pitch: 0.0
+  '29':
+    world: world
+    x: -1757
+    y: 48
+    z: 747
+    yaw: 0.0
+    pitch: 0.0
+  '30':
+    world: world
+    x: -1773
+    y: 46
+    z: 751
+    yaw: 0.0
+    pitch: 0.0
+  '31':
+    world: world
+    x: -1773
+    y: 46
+    z: 750
+    yaw: 0.0
+    pitch: 0.0
+  '32':
+    world: world
+    x: -1773
+    y: 46
+    z: 749
+    yaw: 0.0
+    pitch: 0.0
+  '33':
+    world: world
+    x: -1773
+    y: 46
+    z: 748
+    yaw: 0.0
+    pitch: 0.0
+  '34':
+    world: world
+    x: -1773
+    y: 46
+    z: 747
+    yaw: 0.0
+    pitch: 0.0
+  '35':
+    world: world
+    x: -1773
+    y: 48
+    z: 747
+    yaw: 0.0
+    pitch: 0.0
+  '36':
+    world: world
+    x: -1773
+    y: 48
+    z: 748
+    yaw: 0.0
+    pitch: 0.0
+  '37':
+    world: world
+    x: -1773
+    y: 48
+    z: 749
+    yaw: 0.0
+    pitch: 0.0
+  '38':
+    world: world
+    x: -1773
+    y: 48
+    z: 750
+    yaw: 0.0
+    pitch: 0.0
+  '39':
+    world: world
+    x: -1773
+    y: 48
+    z: 751
+    yaw: 0.0
+    pitch: 0.0
+  '40':
+    world: world
+    x: -1773
+    y: 48
+    z: 755
+    yaw: 0.0
+    pitch: 0.0
+  '41':
+    world: world
+    x: -1773
+    y: 46
+    z: 755
+    yaw: 0.0
+    pitch: 0.0
+  '42':
+    world: world
+    x: -1773
+    y: 46
+    z: 756
+    yaw: 0.0
+    pitch: 0.0
+  '43':
+    world: world
+    x: -1773
+    y: 46
+    z: 757
+    yaw: 0.0
+    pitch: 0.0
+  '44':
+    world: world
+    x: -1773
+    y: 46
+    z: 758
+    yaw: 0.0
+    pitch: 0.0
+  '45':
+    world: world
+    x: -1773
+    y: 46
+    z: 759
+    yaw: 0.0
+    pitch: 0.0
+  '46':
+    world: world
+    x: -1773
+    y: 48
+    z: 756
+    yaw: 0.0
+    pitch: 0.0
+  '47':
+    world: world
+    x: -1773
+    y: 48
+    z: 757
+    yaw: 0.0
+    pitch: 0.0
+  '48':
+    world: world
+    x: -1773
+    y: 48
+    z: 758
+    yaw: 0.0
+    pitch: 0.0
+  '49':
+    world: world
+    x: -1773
+    y: 48
+    z: 759
+    yaw: 0.0
+    pitch: 0.0
+  '50':
+    world: world
+    x: -1771
+    y: 46
+    z: 761
+    yaw: 0.0
+    pitch: 0.0
+  '51':
+    world: world
+    x: -1770
+    y: 46
+    z: 761
+    yaw: 0.0
+    pitch: 0.0
+  '52':
+    world: world
+    x: -1769
+    y: 46
+    z: 761
+    yaw: 0.0
+    pitch: 0.0
+  '53':
+    world: world
+    x: -1768
+    y: 46
+    z: 761
+    yaw: 0.0
+    pitch: 0.0
+  '54':
+    world: world
+    x: -1767
+    y: 46
+    z: 761
+    yaw: 0.0
+    pitch: 0.0
+  '55':
+    world: world
+    x: -1767
+    y: 48
+    z: 761
+    yaw: 0.0
+    pitch: 0.0
+  '56':
+    world: world
+    x: -1768
+    y: 48
+    z: 761
+    yaw: 0.0
+    pitch: 0.0
+  '57':
+    world: world
+    x: -1769
+    y: 48
+    z: 761
+    yaw: 0.0
+    pitch: 0.0
+  '58':
+    world: world
+    x: -1770
+    y: 48
+    z: 761
+    yaw: 0.0
+    pitch: 0.0
+  '59':
+    world: world
+    x: -1771
+    y: 48
+    z: 761
+    yaw: 0.0
+    pitch: 0.0
+  '60':
+    world: world
+    x: -1763
+    y: 46
+    z: 761
+    yaw: 0.0
+    pitch: 0.0
+  '61':
+    world: world
+    x: -1762
+    y: 46
+    z: 761
+    yaw: 0.0
+    pitch: 0.0
+  '62':
+    world: world
+    x: -1761
+    y: 46
+    z: 761
+    yaw: 0.0
+    pitch: 0.0
+  '63':
+    world: world
+    x: -1760
+    y: 46
+    z: 761
+    yaw: 0.0
+    pitch: 0.0
+  '64':
+    world: world
+    x: -1759
+    y: 46
+    z: 761
+    yaw: 0.0
+    pitch: 0.0
+  '65':
+    world: world
+    x: -1759
+    y: 48
+    z: 761
+    yaw: 0.0
+    pitch: 0.0
+  '66':
+    world: world
+    x: -1760
+    y: 48
+    z: 761
+    yaw: 0.0
+    pitch: 0.0
+  '67':
+    world: world
+    x: -1761
+    y: 48
+    z: 761
+    yaw: 0.0
+    pitch: 0.0
+  '68':
+    world: world
+    x: -1762
+    y: 48
+    z: 761
+    yaw: 0.0
+    pitch: 0.0
+  '69':
+    world: world
+    x: -1763
+    y: 48
+    z: 761
+    yaw: 0.0
+    pitch: 0.0
+  '70':
+    world: world
+    x: -1757
+    y: 48
+    z: 759
+    yaw: 0.0
+    pitch: 0.0
+  '71':
+    world: world
+    x: -1757
+    y: 48
+    z: 758
+    yaw: 0.0
+    pitch: 0.0
+  '72':
+    world: world
+    x: -1757
+    y: 48
+    z: 757
+    yaw: 0.0
+    pitch: 0.0
+  '73':
+    world: world
+    x: -1757
+    y: 48
+    z: 756
+    yaw: 0.0
+    pitch: 0.0
+  '74':
+    world: world
+    x: -1757
+    y: 48
+    z: 755
+    yaw: 0.0
+    pitch: 0.0
+  '75':
+    world: world
+    x: -1757
+    y: 46
+    z: 755
+    yaw: 0.0
+    pitch: 0.0
+  '76':
+    world: world
+    x: -1757
+    y: 46
+    z: 756
+    yaw: 0.0
+    pitch: 0.0
+  '77':
+    world: world
+    x: -1757
+    y: 46
+    z: 757
+    yaw: 0.0
+    pitch: 0.0
+  '78':
+    world: world
+    x: -1757
+    y: 46
+    z: 758
+    yaw: 0.0
+    pitch: 0.0
+  '79':
+    world: world
+    x: -1757
+    y: 46
+    z: 759
+    yaw: 0.0
+    pitch: 0.0
