@@ -1,0 +1,16 @@
+main: com.blackoutburst.pgworkshop.main.Main
+name: PG-Workshop
+version: 0.1
+api-version: 1.13
+author: Blackoutburst
+description: Party Game Workshop Practice
+commands:
+  maxscore:
+    description: Set the number of object that must be crafted
+    usage: /maxscore <value>
+  start:
+    description: Start the game
+    usage: /start
+  end:
+    description: End the game
+    usage: /end
