@@ -11,6 +11,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 public class Core {
 
     public static void start() {
+        Main.gameRunning = true;
         Utils.countdown();
         new BukkitRunnable() {
             @Override
@@ -27,6 +28,7 @@ public class Core {
     }
 
     public static void end() {
+        Main.gameRunning = false;
         Utils.cleanWorkshop();
         for (Player p : Bukkit.getOnlinePlayers()) {
             p.teleport(Main.spawn);

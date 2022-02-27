@@ -3,19 +3,23 @@ package com.blackoutburst.pgworkshop.main;
 import com.blackoutburst.pgworkshop.commands.CommandEnd;
 import com.blackoutburst.pgworkshop.commands.CommandMaxScore;
 import com.blackoutburst.pgworkshop.commands.CommandStart;
+import com.blackoutburst.pgworkshop.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -57,6 +61,20 @@ public class Main extends JavaPlugin implements Listener {
 
         spawn = new Location(Bukkit.getWorlds().get(0), -1774.5f, 40, 739.5f, 0, 0);
         gameSpawn = new Location(Bukkit.getWorlds().get(0), -1768.5f, 40, 759.5f, 0, 0);
+    }
+
+    @EventHandler
+    public void onBlockDamage(BlockDamageEvent event) {
+        if (gameRunning && Utils.isMaterial(event.getBlock().getLocation())) {
+            if (event.getBlock().getType().equals(Material.GLOWING_REDSTONE_ORE))
+                event.getBlock().setType(Material.REDSTONE_ORE);
+
+            final ItemStack item = Utils.getDrop(event.getBlock().getType());
+
+            Utils.playBreakSound(event.getBlock().getType(), event.getBlock().getLocation());
+            event.getBlock().setType(Material.AIR);
+            event.getPlayer().getInventory().addItem(item);
+        }
     }
 
     @EventHandler

@@ -7,6 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Random;
@@ -14,6 +15,46 @@ import java.util.Random;
 public class Utils {
 
     private static final Random RANDOM = new Random();
+
+    public static void playBreakSound(Material material, Location location) {
+        for (ResourcesEnum res : ResourcesEnum.values()) {
+            if (res.block.equals(material)) {
+                Bukkit.getWorlds().get(0).playSound(location, res.breakSound, 3, 1);
+                break;
+            }
+        }
+    }
+
+    public static ItemStack getDrop(Material material) {
+        Material mat = null;
+        byte data = 0;
+
+        for (ResourcesEnum res : ResourcesEnum.values()) {
+            if (res.block.equals(material)) {
+                mat = res.drop;
+                data = res.dropData;
+                break;
+            }
+        }
+        return (new ItemStack(mat, 1, data));
+    }
+
+    public static boolean isMaterial(Location loc) {
+        for (Location l : Main.priorityMaterials) {
+            if (l.getBlockX() == loc.getBlockX() &&
+                l.getBlockY() == loc.getBlockY() &&
+                l.getBlockZ() == loc.getBlockZ())
+                return (true);
+        }
+
+        for (Location l : Main.materials) {
+            if (l.getBlockX() == loc.getBlockX() &&
+                l.getBlockY() == loc.getBlockY() &&
+                l.getBlockZ() == loc.getBlockZ())
+                return (true);
+        }
+        return (false);
+    }
 
     public static void generateRessrouces() {
         for (Location l : Main.priorityMaterials) {
