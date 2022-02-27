@@ -2,7 +2,7 @@ package com.blackoutburst.pgworkshop.core;
 
 import org.bukkit.Material;
 
-public enum RessourcesEnum {
+public enum ResourcesEnum {
     STONE(Material.STONE, (byte) 0, Material.COBBLESTONE, (byte) 0),
     GRANITE(Material.STONE, (byte) 1, Material.COBBLESTONE, (byte) 0),
     LOG(Material.LOG, (byte) 1, Material.LOG, (byte) 0),
