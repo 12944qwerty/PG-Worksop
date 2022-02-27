@@ -26,6 +26,7 @@ public class Core {
     }
 
     public static void end() {
+        Utils.cleanWorkshop();
         for (Player p : Bukkit.getOnlinePlayers()) {
             p.teleport(Main.spawn);
         }
