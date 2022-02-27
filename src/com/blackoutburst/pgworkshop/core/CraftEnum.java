@@ -302,9 +302,8 @@ public enum CraftEnum {
             Material.IRON_INGOT, Material.REDSTONE, Material.IRON_INGOT,
             Material.AIR, Material.IRON_INGOT, Material.AIR);
 
-    public Material item;
-    public Material[] mats;
-
+    public final Material item;
+    public final Material[] mats;
 
     CraftEnum(Material item, Material... mats) {
         this.item = item;

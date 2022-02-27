@@ -10,6 +10,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -25,7 +26,7 @@ public class Main extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         spawn = new Location(Bukkit.getWorlds().get(0), -1774.5f, 40, 739.5f, 0, 0);
-        gameSpawn = new Location(Bukkit.getWorlds().get(0), -1764.5f, 40, 758.5f, 0, 0);
+        gameSpawn = new Location(Bukkit.getWorlds().get(0), -1768.5f, 40, 759.5f, 0, 0);
     }
 
     @EventHandler
@@ -45,6 +46,11 @@ public class Main extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
+        event.setCancelled(gameRunning);
+    }
+
+    @EventHandler
+    public void onBlockPlace(BlockPlaceEvent event) {
         event.setCancelled(gameRunning);
     }
 
