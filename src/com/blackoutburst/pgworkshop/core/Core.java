@@ -31,6 +31,7 @@ public class Core {
         Main.gameRunning = false;
         Utils.cleanWorkshop();
         for (Player p : Bukkit.getOnlinePlayers()) {
+            p.getInventory().clear();
             p.teleport(Main.spawn);
         }
     }
