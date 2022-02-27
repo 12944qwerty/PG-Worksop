@@ -1,5 +1,6 @@
 package com.blackoutburst.pgworkshop.utils;
 
+import com.blackoutburst.pgworkshop.core.ResourcesEnum;
 import com.blackoutburst.pgworkshop.main.Main;
 import com.blackoutburst.pgworkshop.nms.NMSTitle;
 import org.bukkit.Bukkit;
@@ -8,7 +9,30 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.Random;
+
 public class Utils {
+
+    private static final Random RANDOM = new Random();
+
+    public static void generateRessrouces() {
+        for (Location l : Main.priorityMaterials) {
+            final int rng = RANDOM.nextInt(ResourcesEnum.values().length);
+            final Material mat = ResourcesEnum.values()[rng].block;
+            final byte data = ResourcesEnum.values()[rng].blockData;
+
+            l.getWorld().getBlockAt(l).setType(mat);
+            l.getWorld().getBlockAt(l).setData(data);
+        }
+        for (Location l : Main.materials) {
+            final int rng = RANDOM.nextInt(ResourcesEnum.values().length);
+            final Material mat = ResourcesEnum.values()[rng].block;
+            final byte data = ResourcesEnum.values()[rng].blockData;
+
+            l.getWorld().getBlockAt(l).setType(mat);
+            l.getWorld().getBlockAt(l).setData(data);
+        }
+    }
 
     public static void cleanWorkshop() {
         for (Location l : Main.priorityMaterials) {

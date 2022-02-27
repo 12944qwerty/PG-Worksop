@@ -34,6 +34,8 @@ public class Main extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
+        getServer().getPluginManager().registerEvents(this, this);
+
         YamlConfiguration file = YamlConfiguration.loadConfiguration(getClass().getResourceAsStream("/material.yml"));
         Set<String> respawns = file.getConfigurationSection("loc").getKeys(false);
         for (final String i : respawns) {
