@@ -17,6 +17,7 @@ public class Core {
             public void run() {
                 Bukkit.getWorlds().get(0).setDifficulty(Difficulty.PEACEFUL);
                 for (Player p : Bukkit.getOnlinePlayers()) {
+                    p.getInventory().clear();
                     p.setGameMode(GameMode.SURVIVAL);
                     p.teleport(Main.gameSpawn);
                 }
