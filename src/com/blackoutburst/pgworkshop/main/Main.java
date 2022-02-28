@@ -85,6 +85,8 @@ public class Main extends JavaPlugin implements Listener {
         foremanLocation = new Location(world, -1768.5f, 39, 762.5f, 180, 0);
         spawn = new Location(world, -1774.5f, 39, 739.5f, 0, 0);
         gameSpawn = new Location(world, -1768.5f, 39, 759.5f, 0, 0);
+
+        Core.update();
     }
 
     @EventHandler
@@ -114,6 +116,7 @@ public class Main extends JavaPlugin implements Listener {
             world.playSound(event.getPlayer().getLocation(), Sound.LEVEL_UP, 3f, 1f);
             event.getPlayer().sendMessage("§aYou completed this craft in: §b"+Utils.ROUND.format((Float.valueOf(Duration.between(Core.craftBegin, Core.craftEnd).toMillis()) / 1000.0f))+"s");
             Core.currentScore++;
+            Core.board.set(event.getPlayer(), 11, "Progress: §a"+Core.currentScore+"/"+Main.maxScore);
             if (Core.currentScore >= maxScore) {
                 event.setCancelled(true);
                 Core.end();
@@ -121,6 +124,7 @@ public class Main extends JavaPlugin implements Listener {
             }
 
             Utils.chooseCraft(event.getPlayer());
+            Core.board.set(event.getPlayer(), 13, "Craft: §e"+Core.craftName);
             event.setCancelled(true);
         }
     }

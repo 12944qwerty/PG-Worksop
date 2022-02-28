@@ -19,15 +19,20 @@ public class Core {
 
     public static Instant craftBegin;
     public static Instant craftEnd;
-
     public static Instant gameBegin;
     public static Instant gameEnd;
 
-    public static int currentScore;
+    public static int currentScore = 0;
+
+    public static NMSBoard board = null;
+
+    public static String craftName = null;
 
     public static Material requiredItem = null;
+
     public static List<NMSEntities> frames = new ArrayList<>();
-    private static Villager foreman;
+
+    private static Villager foreman = null;
 
     private static void placeItemFrame() {
         for (Location l : Main.itemFrames) {
@@ -60,12 +65,35 @@ public class Core {
                 Main.world.setDifficulty(Difficulty.PEACEFUL);
                 for (Player p : Bukkit.getOnlinePlayers()) {
                     Utils.chooseCraft(p);
+                    board = new NMSBoard(p, "§6Workshop");
+                    board.set(p,15, "§e§m--------------------");
+                    board.set(p, 14, " ");
+                    board.set(p, 13, "Craft: §e"+craftName);
+                    board.set(p, 12, "  ");
+                    board.set(p, 11, "Progress: §a"+currentScore+"/"+Main.maxScore);
+                    board.set(p, 10, "   ");
+                    board.set(p, 8, "Time: §b"+Utils.ROUND.format((Float.valueOf(Duration.between(Core.gameBegin, Instant.now()).toMillis()) / 1000.0f))+"s");
+                    board.set(p, 7, "    ");
+                    board.set(p,6, "§e§m-------------------- ");
                     p.getInventory().clear();
                     p.setGameMode(GameMode.SURVIVAL);
                     p.teleport(Main.gameSpawn);
                 }
             }
         }.runTaskLater(Main.getPlugin(Main.class), 60L);
+    }
+
+    public static void update() {
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                if (board != null) {
+                    for (Player p : Bukkit.getOnlinePlayers()) {
+                        board.set(p, 8, "Time: §b" + Utils.ROUND.format((Float.valueOf(Duration.between(Core.gameBegin, Instant.now()).toMillis()) / 1000.0f)) + "s");
+                    }
+                }
+            }
+        }.runTaskTimer(Main.getPlugin(Main.class), 0L, 1L);
     }
 
     public static void end() {
@@ -81,6 +109,8 @@ public class Core {
         Main.gameRunning = false;
         Utils.cleanWorkshop();
         for (Player p : Bukkit.getOnlinePlayers()) {
+            board.clear(p);
+            board = null;
             p.sendMessage("§aYou completed "+currentScore+" craft in: §b"+Utils.ROUND.format((Float.valueOf(Duration.between(Core.gameBegin, Core.gameEnd).toMillis()) / 1000.0f))+"s");
             p.getInventory().clear();
             p.teleport(Main.spawn);

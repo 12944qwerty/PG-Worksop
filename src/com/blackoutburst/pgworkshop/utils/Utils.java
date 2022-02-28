@@ -32,6 +32,7 @@ public class Utils {
         Core.craftBegin = Instant.now();
         Core.requiredItem = CraftEnum.values()[rng].item;
         player.sendMessage("§eYou need to craft a §r"+CraftEnum.values()[rng].name);
+        Core.craftName = CraftEnum.values()[rng].name;
 
         for (int i = 0; i < Core.frames.size() - 1; i++) {
             final NMSEntities frame = Core.frames.get(i);
