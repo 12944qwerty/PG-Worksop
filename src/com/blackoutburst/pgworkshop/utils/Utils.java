@@ -27,7 +27,7 @@ public class Utils {
     public static void playBreakSound(Material material, Location location) {
         for (ResourcesEnum res : ResourcesEnum.values()) {
             if (res.block.equals(material)) {
-                Bukkit.getWorlds().get(0).playSound(location, res.breakSound, 3, 1);
+                Main.world.playSound(location, res.breakSound, 3, 1);
                 break;
             }
         }

@@ -7,6 +7,7 @@ import com.blackoutburst.pgworkshop.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -30,8 +31,11 @@ import java.util.Set;
 
 public class Main extends JavaPlugin implements Listener {
 
+    public static World world;
+
     public static List<Location> priorityMaterials = new ArrayList<>();
     public static List<Location> materials = new ArrayList<>();
+    public static List<Location> itemFrames = new ArrayList<>();
 
     public static Location spawn;
     public static Location gameSpawn;
@@ -41,6 +45,7 @@ public class Main extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         getServer().getPluginManager().registerEvents(this, this);
+        world = Bukkit.getWorlds().get(0);
 
         YamlConfiguration file = YamlConfiguration.loadConfiguration(getClass().getResourceAsStream("/material.yml"));
         Set<String> respawns = file.getConfigurationSection("loc").getKeys(false);
@@ -48,7 +53,7 @@ public class Main extends JavaPlugin implements Listener {
             final double x = file.getDouble("loc."+i+".x");
             final double y = file.getDouble("loc."+i+".y");
             final double z = file.getDouble("loc."+i+".z");
-            materials.add(new Location(Bukkit.getWorlds().get(0), x, y, z));
+            materials.add(new Location(world, x, y, z));
         }
 
         file = YamlConfiguration.loadConfiguration(getClass().getResourceAsStream("/priority_material.yml"));
@@ -57,11 +62,20 @@ public class Main extends JavaPlugin implements Listener {
             final double x = file.getDouble("loc."+i+".x");
             final double y = file.getDouble("loc."+i+".y");
             final double z = file.getDouble("loc."+i+".z");
-            priorityMaterials.add(new Location(Bukkit.getWorlds().get(0), x, y, z));
+            priorityMaterials.add(new Location(world, x, y, z));
         }
 
-        spawn = new Location(Bukkit.getWorlds().get(0), -1774.5f, 39, 739.5f, 0, 0);
-        gameSpawn = new Location(Bukkit.getWorlds().get(0), -1768.5f, 39, 759.5f, 0, 0);
+        file = YamlConfiguration.loadConfiguration(getClass().getResourceAsStream("/item_frame.yml"));
+        respawns = file.getConfigurationSection("loc").getKeys(false);
+        for (final String i : respawns) {
+            final double x = file.getDouble("loc."+i+".x");
+            final double y = file.getDouble("loc."+i+".y");
+            final double z = file.getDouble("loc."+i+".z");
+            itemFrames.add(new Location(world, x, y, z));
+        }
+
+        spawn = new Location(world, -1774.5f, 39, 739.5f, 0, 0);
+        gameSpawn = new Location(world, -1768.5f, 39, 759.5f, 0, 0);
     }
 
     @EventHandler
@@ -76,11 +90,6 @@ public class Main extends JavaPlugin implements Listener {
             event.getBlock().setType(Material.AIR);
             event.getPlayer().getInventory().addItem(item);
         }
-    }
-
-    @EventHandler
-    public void onHangingEntityBreak(HangingBreakByEntityEvent event) {
-        event.setCancelled(gameRunning);
     }
 
     @EventHandler

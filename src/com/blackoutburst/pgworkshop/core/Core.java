@@ -1,27 +1,49 @@
 package com.blackoutburst.pgworkshop.core;
 
 import com.blackoutburst.pgworkshop.main.Main;
+import com.blackoutburst.pgworkshop.nms.NMSBlockPosition;
+import com.blackoutburst.pgworkshop.nms.NMSEntities;
+import com.blackoutburst.pgworkshop.nms.NMSEnumDirection;
+import com.blackoutburst.pgworkshop.nms.NMSSpawnEntity;
 import com.blackoutburst.pgworkshop.utils.Utils;
-import org.bukkit.Bukkit;
-import org.bukkit.Difficulty;
-import org.bukkit.GameMode;
-import org.bukkit.Material;
+import org.bukkit.*;
+import org.bukkit.block.BlockFace;
+import org.bukkit.entity.ItemFrame;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Core {
 
     public static Material requiredItem = null;
+    public static List<NMSEntities> frames = new ArrayList<>();
+
+    private static void placeItemFrame() {
+        for (Location l : Main.itemFrames) {
+            Main.world.getBlockAt(l).setType(Material.AIR);
+            NMSBlockPosition position = new NMSBlockPosition(l.getBlockX(), l.getBlockY(), l.getBlockZ());
+            NMSEnumDirection direction = new NMSEnumDirection(NMSEnumDirection.Direction.NORTH);
+            NMSEntities itemFrame = new NMSEntities(Main.world, NMSEntities.EntityType.ITEM_FRAME, position.position, direction.direction);
+            frames.add(itemFrame);
+
+            for (Player p : Bukkit.getOnlinePlayers()) {
+                NMSSpawnEntity.send(p, itemFrame);
+            }
+        }
+    }
 
     public static void start() {
-        Bukkit.getWorlds().get(0).getBlockAt(Main.gameSpawn).setType(Material.AIR);
+        Main.world.getBlockAt(Main.gameSpawn).setType(Material.AIR);
+        placeItemFrame();
 
         Main.gameRunning = true;
         Utils.countdown();
         new BukkitRunnable() {
             @Override
             public void run() {
-                Bukkit.getWorlds().get(0).setDifficulty(Difficulty.PEACEFUL);
+                Main.world.setDifficulty(Difficulty.PEACEFUL);
                 Utils.chooseCraft();
                 for (Player p : Bukkit.getOnlinePlayers()) {
                     Utils.generateRessrouces();
