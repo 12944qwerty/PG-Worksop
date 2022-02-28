@@ -46,6 +46,7 @@ public class Main extends JavaPlugin implements Listener {
 
     public static Location spawn;
     public static Location gameSpawn;
+    public static Location foremanLocation;
     public static boolean gameRunning = false;
     public static int maxScore = 6;
 
@@ -81,6 +82,7 @@ public class Main extends JavaPlugin implements Listener {
             itemFrames.add(new Location(world, x, y, z));
         }
 
+        foremanLocation = new Location(world, -1768.5f, 39, 762.5f);
         spawn = new Location(world, -1774.5f, 39, 739.5f, 0, 0);
         gameSpawn = new Location(world, -1768.5f, 39, 759.5f, 0, 0);
     }

@@ -14,6 +14,7 @@ public class Core {
 
     public static Material requiredItem = null;
     public static List<NMSEntities> frames = new ArrayList<>();
+    public static int foremanID;
 
     private static void placeItemFrame() {
         for (Location l : Main.itemFrames) {
@@ -33,6 +34,20 @@ public class Core {
         Main.world.getBlockAt(Main.gameSpawn).setType(Material.AIR);
         placeItemFrame();
 
+        NMSEntities foreman = new NMSEntities(Main.world, NMSEntities.EntityType.VILLAGER);
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            NMSSpawnEntityLiving.send(p, foreman);
+            NMSEntityTeleport.send(p, foreman, Main.foremanLocation.getX(), Main.foremanLocation.getY(), Main.foremanLocation.getZ());
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    NMSEntityHeadRotation.send(p, foreman, 180);
+                }
+            }.runTaskLater(Main.getPlugin(Main.class), 5L);
+        }
+        foremanID = foreman.getID();
+
+
         Utils.countdown();
         new BukkitRunnable() {
             @Override
@@ -50,6 +65,9 @@ public class Core {
     }
 
     public static void end() {
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            NMSEntityDestroy.send(p, foremanID);
+        }
         for (NMSEntities e : frames) {
             for (Player p : Bukkit.getOnlinePlayers()) {
                 NMSEntityDestroy.send(p, e.getID());
