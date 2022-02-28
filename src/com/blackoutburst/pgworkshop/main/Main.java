@@ -10,6 +10,7 @@ import org.bukkit.block.Furnace;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -27,6 +28,8 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -85,6 +88,15 @@ public class Main extends JavaPlugin implements Listener {
         foremanLocation = new Location(world, -1768.5f, 39, 762.5f, 180, 0);
         spawn = new Location(world, -1774.5f, 39, 739.5f, 0, 0);
         gameSpawn = new Location(world, -1768.5f, 39, 759.5f, 0, 0);
+
+
+        ItemStack sword = new ItemStack(Material.ARMOR_STAND);
+        ShapedRecipe recipe = new ShapedRecipe(sword);
+
+        recipe.shape("SSS", " S ", "SCS");
+        recipe.setIngredient('C', Material.STEP, (byte) 3);
+        recipe.setIngredient('S', Material.STICK);
+        Bukkit.addRecipe(recipe);
 
         Core.update();
     }
