@@ -109,6 +109,11 @@ public class Main extends JavaPlugin implements Listener {
         }
     }
 
+    @EventHandler
+    public void onFurnaceSmelt(FurnaceSmeltEvent event) {
+        final Furnace furnace = (Furnace) event.getBlock().getState();
+        furnace.setCookTime((short) 200);
+    }
 
     @EventHandler
     public void onInteraction(PlayerInteractEvent event) {
@@ -121,7 +126,7 @@ public class Main extends JavaPlugin implements Listener {
                 int count = 0;
                 @Override
                 public void run() {
-                    if (count >= 64) {
+                    if (count >= 100) {
                         this.cancel();
                     }
                     furnace.setCookTime((short) 200);
@@ -166,8 +171,8 @@ public class Main extends JavaPlugin implements Listener {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         switch (command.getName().toLowerCase()) {
-            case "start": new CommandStart().execute(); break;
-            case "end": new CommandEnd().execute(); break;
+            case "start": new CommandStart().execute(sender); break;
+            case "end": new CommandEnd().execute(sender); break;
             case "maxscore": new CommandMaxScore().execute(sender, args); break;
             default: return (true);
         }
