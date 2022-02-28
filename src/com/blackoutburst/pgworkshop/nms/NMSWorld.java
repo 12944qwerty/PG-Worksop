@@ -2,10 +2,6 @@ package com.blackoutburst.pgworkshop.nms;
 
 import org.bukkit.Bukkit;
 import org.bukkit.World;
-import org.bukkit.generator.ChunkGenerator;
-
-import java.io.File;
-import java.lang.reflect.Constructor;
 
 public class NMSWorld {
 

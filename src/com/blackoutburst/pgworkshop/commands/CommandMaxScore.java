@@ -11,7 +11,7 @@ public class CommandMaxScore {
             return;
         }
 
-        int value = 0;
+        int value;
 
         try {
             value = Integer.parseInt(args[0]);

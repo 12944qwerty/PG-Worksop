@@ -72,7 +72,7 @@ public class Core {
                     board.set(p, 12, "  ");
                     board.set(p, 11, "Progress: §a"+currentScore+"/"+Main.maxScore);
                     board.set(p, 10, "   ");
-                    board.set(p, 8, "Time: §b"+Utils.ROUND.format((Float.valueOf(Duration.between(Core.gameBegin, Instant.now()).toMillis()) / 1000.0f))+"s");
+                    board.set(p, 8, "Time: §b"+Utils.ROUND.format(((float) Duration.between(Core.gameBegin, Instant.now()).toMillis() / 1000.0f))+"s");
                     board.set(p, 7, "    ");
                     board.set(p,6, "§e§m-------------------- ");
                     p.getInventory().clear();
@@ -89,7 +89,7 @@ public class Core {
             public void run() {
                 if (board != null) {
                     for (Player p : Bukkit.getOnlinePlayers()) {
-                        board.set(p, 8, "Time: §b" + Utils.ROUND.format((Float.valueOf(Duration.between(Core.gameBegin, Instant.now()).toMillis()) / 1000.0f)) + "s");
+                        board.set(p, 8, "Time: §b" + Utils.ROUND.format(((float) Duration.between(Core.gameBegin, Instant.now()).toMillis() / 1000.0f)) + "s");
                     }
                 }
             }
@@ -111,7 +111,7 @@ public class Core {
         for (Player p : Bukkit.getOnlinePlayers()) {
             board.clear(p);
             board = null;
-            p.sendMessage("§aYou completed "+currentScore+" craft in: §b"+Utils.ROUND.format((Float.valueOf(Duration.between(Core.gameBegin, Core.gameEnd).toMillis()) / 1000.0f))+"s");
+            p.sendMessage("§aYou completed "+currentScore+" craft in: §b"+Utils.ROUND.format(((float) Duration.between(Core.gameBegin, Core.gameEnd).toMillis() / 1000.0f))+"s");
             p.getInventory().clear();
             p.teleport(Main.spawn);
         }

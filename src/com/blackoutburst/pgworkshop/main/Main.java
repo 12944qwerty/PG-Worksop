@@ -10,7 +10,6 @@ import org.bukkit.block.Furnace;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,7 +17,6 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.EntityInteractEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.inventory.FurnaceSmeltEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -29,7 +27,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -126,7 +123,7 @@ public class Main extends JavaPlugin implements Listener {
             Core.craftEnd = Instant.now();
             event.getPlayer().getInventory().clear();
             world.playSound(event.getPlayer().getLocation(), Sound.LEVEL_UP, 3f, 1f);
-            event.getPlayer().sendMessage("§aYou completed this craft in: §b"+Utils.ROUND.format((Float.valueOf(Duration.between(Core.craftBegin, Core.craftEnd).toMillis()) / 1000.0f))+"s");
+            event.getPlayer().sendMessage("§aYou completed this craft in: §b"+Utils.ROUND.format(((float) Duration.between(Core.craftBegin, Core.craftEnd).toMillis() / 1000.0f))+"s");
             Core.currentScore++;
             Core.board.set(event.getPlayer(), 11, "Progress: §a"+Core.currentScore+"/"+Main.maxScore);
             if (Core.currentScore >= maxScore) {
