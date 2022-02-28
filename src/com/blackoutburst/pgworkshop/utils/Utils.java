@@ -14,6 +14,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.text.DecimalFormat;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -22,9 +24,12 @@ public class Utils {
 
     private static final Random RANDOM = new Random();
 
+    public static final DecimalFormat ROUND = new DecimalFormat("0.00");
+
     public static void chooseCraft(Player player) {
         final int rng = RANDOM.nextInt(CraftEnum.values().length);
 
+        Core.craftBegin = Instant.now();
         Core.requiredItem = CraftEnum.values()[rng].item;
         player.sendMessage("§eYou need to craft a §r"+CraftEnum.values()[rng].name);
 

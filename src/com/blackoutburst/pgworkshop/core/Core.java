@@ -6,12 +6,24 @@ import com.blackoutburst.pgworkshop.utils.Utils;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Core {
+
+    public static Instant craftBegin;
+    public static Instant craftEnd;
+
+    public static Instant gameBegin;
+    public static Instant gameEnd;
+
+    public static int currentScore;
 
     public static Material requiredItem = null;
     public static List<NMSEntities> frames = new ArrayList<>();
@@ -32,10 +44,13 @@ public class Core {
     }
 
     public static void start() {
+        currentScore = 0;
+        gameBegin = Instant.now();
         Main.world.getBlockAt(Main.gameSpawn).setType(Material.AIR);
         placeItemFrame();
 
         foreman = Main.world.spawn(Main.foremanLocation, Villager.class);
+        foreman.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100000, 255, false, false));
 
         Utils.countdown();
         new BukkitRunnable() {
@@ -54,9 +69,11 @@ public class Core {
     }
 
     public static void end() {
+        gameEnd = Instant.now();
         foreman.remove();
         for (NMSEntities e : frames) {
             for (Player p : Bukkit.getOnlinePlayers()) {
+                p.sendMessage("§aYou completed "+currentScore+" craft in: §b"+Utils.ROUND.format((Float.valueOf(Duration.between(Core.gameBegin, Core.gameEnd).toMillis()) / 1000.0f))+"s");
                 NMSEntityDestroy.send(p, e.getID());
             }
         }

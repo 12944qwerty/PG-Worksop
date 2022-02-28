@@ -33,6 +33,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -105,8 +107,20 @@ public class Main extends JavaPlugin implements Listener {
     @EventHandler
     public void onEntityUse(PlayerInteractEntityEvent event) {
         if (!gameRunning) return;
+        if (event.getRightClicked().getType().equals(EntityType.VILLAGER)) {
+            event.setCancelled(true);
+        }
         if (event.getRightClicked().getType().equals(EntityType.VILLAGER) &&
-            event.getPlayer().getItemInHand().equals(Core.requiredItem)) {
+            event.getPlayer().getItemInHand().getType().equals(Core.requiredItem)) {
+            Core.craftEnd = Instant.now();
+            event.getPlayer().sendMessage("§aYou completed this craft in: §b"+Utils.ROUND.format((Float.valueOf(Duration.between(Core.craftBegin, Core.craftEnd).toMillis()) / 1000.0f))+"s");
+            Core.currentScore++;
+            if (Core.currentScore >= maxScore) {
+                event.setCancelled(true);
+                Core.end();
+                return;
+            }
+
             Utils.chooseCraft(event.getPlayer());
             event.setCancelled(true);
         }
