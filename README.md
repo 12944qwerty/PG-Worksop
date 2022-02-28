@@ -1,9 +1,12 @@
+[![License](https://img.shields.io/github/license/Blackoutburst/PG-Worksop.svg)](LICENSE)
+[![Release](https://img.shields.io/github/release/Blackoutburst/PG-Worksop.svg)](https://github.com/Blackoutburst/PG-Worksop/releases)
+
 # PG-Worksop
 
 This is a Minecraft 1.8 plugin who recreate the minigame Workshop from Hypixel Party game
 
 ## How to use
-For that you need the party game world then
+For that you need the party game world and a spigot/paper 1.8 server
 
 `/start` start the game\
 `/end` end the game\
