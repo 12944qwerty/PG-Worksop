@@ -8,6 +8,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -18,12 +19,16 @@ import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -87,6 +92,16 @@ public class Main extends JavaPlugin implements Listener {
             Utils.playBreakSound(event.getBlock().getType(), event.getBlock().getLocation());
             event.getBlock().setType(Material.AIR);
             event.getPlayer().getInventory().addItem(item);
+        }
+    }
+
+
+    @EventHandler
+    public void onInventoryClick(InventoryClickEvent event) {
+        if (gameRunning && event.getInventory().getType().equals(InventoryType.CRAFTING) &&
+                event.getSlotType().equals(InventoryType.SlotType.CRAFTING)) {
+            event.setCancelled(true);
+            event.getWhoClicked().sendMessage("§cYou must use the crafting table!");
         }
     }
 
