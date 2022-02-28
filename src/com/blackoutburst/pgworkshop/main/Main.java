@@ -3,6 +3,7 @@ package com.blackoutburst.pgworkshop.main;
 import com.blackoutburst.pgworkshop.commands.CommandEnd;
 import com.blackoutburst.pgworkshop.commands.CommandMaxScore;
 import com.blackoutburst.pgworkshop.commands.CommandStart;
+import com.blackoutburst.pgworkshop.nms.NMSTitle;
 import com.blackoutburst.pgworkshop.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -13,6 +14,7 @@ import org.bukkit.block.Furnace;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -20,6 +22,7 @@ import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.inventory.FurnaceSmeltEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerDropItemEvent;
@@ -27,6 +30,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -105,15 +109,26 @@ public class Main extends JavaPlugin implements Listener {
         }
     }
 
+
     @EventHandler
     public void onInteraction(PlayerInteractEvent event) {
         if (!gameRunning) return;
         if (event.getClickedBlock() == null) return;
         if (event.getClickedBlock().getType().equals(Material.FURNACE) ||
             event.getClickedBlock().getType().equals(Material.BURNING_FURNACE)) {
-            Furnace furnace = (Furnace) event.getClickedBlock().getState();
-            furnace.setBurnTime((short) 1);
-            furnace.setCookTime((short) 0);
+            final Furnace furnace = (Furnace) event.getClickedBlock().getState();
+            new BukkitRunnable() {
+                int count = 0;
+                @Override
+                public void run() {
+                    if (count >= 64) {
+                        this.cancel();
+                    }
+                    furnace.setCookTime((short) 200);
+                    count++;
+                }
+            }.runTaskTimer(Main.getPlugin(Main.class), 0L, 0L);
+
             furnace.getInventory().setFuel(new ItemStack(Material.COAL, 64));
         }
     }
