@@ -56,6 +56,7 @@ public class Core {
                 NMSEntityDestroy.send(p, e.getID());
             }
         }
+        frames.clear();
 
         Main.gameRunning = false;
         Utils.cleanWorkshop();

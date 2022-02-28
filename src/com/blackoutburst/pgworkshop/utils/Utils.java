@@ -4,6 +4,8 @@ import com.blackoutburst.pgworkshop.core.Core;
 import com.blackoutburst.pgworkshop.core.CraftEnum;
 import com.blackoutburst.pgworkshop.core.ResourcesEnum;
 import com.blackoutburst.pgworkshop.main.Main;
+import com.blackoutburst.pgworkshop.nms.NMSEntities;
+import com.blackoutburst.pgworkshop.nms.NMSItemFrame;
 import com.blackoutburst.pgworkshop.nms.NMSTitle;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -22,6 +24,25 @@ public class Utils {
         final int rng = RANDOM.nextInt(CraftEnum.values().length);
 
         Core.requiredItem = CraftEnum.values()[rng].item;
+
+        for (int i = 0; i < Core.frames.size() - 1; i++) {
+            final NMSEntities frame = Core.frames.get(i);
+            final Material material = CraftEnum.values()[rng].mats[i];
+            final ItemStack stack = new ItemStack(material, 1, (byte) (material.equals(Material.INK_SACK) ? 4 : 0));
+
+            for (Player player : Bukkit.getOnlinePlayers()) {
+                NMSItemFrame.setItem(player, frame, stack);
+            }
+        }
+
+        final NMSEntities frame = Core.frames.get(Core.frames.size() - 1);
+        final Material material = CraftEnum.values()[rng].item;
+        final ItemStack stack = new ItemStack(material, 1, (byte) 0);
+
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            NMSItemFrame.setItem(player, frame, stack);
+        }
+
     }
 
     public static void playBreakSound(Material material, Location location) {
