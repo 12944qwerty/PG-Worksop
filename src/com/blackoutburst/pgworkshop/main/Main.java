@@ -17,6 +17,7 @@ import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.hanging.HangingBreakByEntityEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
@@ -59,8 +60,8 @@ public class Main extends JavaPlugin implements Listener {
             priorityMaterials.add(new Location(Bukkit.getWorlds().get(0), x, y, z));
         }
 
-        spawn = new Location(Bukkit.getWorlds().get(0), -1774.5f, 40, 739.5f, 0, 0);
-        gameSpawn = new Location(Bukkit.getWorlds().get(0), -1768.5f, 40, 759.5f, 0, 0);
+        spawn = new Location(Bukkit.getWorlds().get(0), -1774.5f, 39, 739.5f, 0, 0);
+        gameSpawn = new Location(Bukkit.getWorlds().get(0), -1768.5f, 39, 759.5f, 0, 0);
     }
 
     @EventHandler
@@ -75,6 +76,11 @@ public class Main extends JavaPlugin implements Listener {
             event.getBlock().setType(Material.AIR);
             event.getPlayer().getInventory().addItem(item);
         }
+    }
+
+    @EventHandler
+    public void onHangingEntityBreak(HangingBreakByEntityEvent event) {
+        event.setCancelled(gameRunning);
     }
 
     @EventHandler

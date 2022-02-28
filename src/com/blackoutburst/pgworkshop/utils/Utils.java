@@ -1,5 +1,7 @@
 package com.blackoutburst.pgworkshop.utils;
 
+import com.blackoutburst.pgworkshop.core.Core;
+import com.blackoutburst.pgworkshop.core.CraftEnum;
 import com.blackoutburst.pgworkshop.core.ResourcesEnum;
 import com.blackoutburst.pgworkshop.main.Main;
 import com.blackoutburst.pgworkshop.nms.NMSTitle;
@@ -15,6 +17,12 @@ import java.util.Random;
 public class Utils {
 
     private static final Random RANDOM = new Random();
+
+    public static void chooseCraft() {
+        final int rng = RANDOM.nextInt(CraftEnum.values().length);
+
+        Core.requiredItem = CraftEnum.values()[rng].item;
+    }
 
     public static void playBreakSound(Material material, Location location) {
         for (ResourcesEnum res : ResourcesEnum.values()) {

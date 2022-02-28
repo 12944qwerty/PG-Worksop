@@ -5,18 +5,24 @@ import com.blackoutburst.pgworkshop.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
 import org.bukkit.GameMode;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class Core {
 
+    public static Material requiredItem = null;
+
     public static void start() {
+        Bukkit.getWorlds().get(0).getBlockAt(Main.gameSpawn).setType(Material.AIR);
+
         Main.gameRunning = true;
         Utils.countdown();
         new BukkitRunnable() {
             @Override
             public void run() {
                 Bukkit.getWorlds().get(0).setDifficulty(Difficulty.PEACEFUL);
+                Utils.chooseCraft();
                 for (Player p : Bukkit.getOnlinePlayers()) {
                     Utils.generateRessrouces();
                     p.getInventory().clear();
