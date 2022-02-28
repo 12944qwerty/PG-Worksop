@@ -14,12 +14,12 @@ public enum ResourcesEnum {
     REDSTONE_ORE(Material.REDSTONE_ORE, (byte) 0, Material.REDSTONE, (byte) 0, Sound.DIG_STONE),
     DIAMOND_ORE(Material.DIAMOND_ORE, (byte) 0, Material.DIAMOND, (byte) 0, Sound.DIG_STONE),
     COBWEB(Material.WEB, (byte) 0, Material.STRING, (byte) 0, Sound.DIG_STONE),
+    MELON(Material.MELON_BLOCK, (byte) 0, Material.MELON, (byte) 0, Sound.DIG_WOOD),
     BOOKSHELF(Material.BOOKSHELF, (byte) 0, Material.BOOK, (byte) 0, Sound.DIG_WOOD),
     LAPIS_ORE(Material.LAPIS_ORE, (byte) 0, Material.INK_SACK, (byte) 4, Sound.DIG_STONE),
     EMERALD_ORE(Material.EMERALD_ORE, (byte) 0, Material.EMERALD, (byte) 0, Sound.DIG_STONE),
     SANDSTONE_SLAB(Material.STEP, (byte) 1, Material.STEP, (byte) 3, Sound.DIG_STONE),
-    STONE_SLAB(Material.STEP, (byte) 0, Material.STEP, (byte) 3, Sound.DIG_STONE),
-    MELON(Material.MELON_BLOCK, (byte) 0, Material.MELON, (byte) 0, Sound.DIG_WOOD);
+    STONE_SLAB(Material.STEP, (byte) 0, Material.STEP, (byte) 3, Sound.DIG_STONE);
 
     public final Material block;
     public final byte blockData;

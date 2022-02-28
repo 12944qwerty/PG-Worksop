@@ -88,47 +88,53 @@ public class Utils {
         return (false);
     }
 
-    public static void generateRessrouces(CraftEnum craft) {
-        for (Location l : Main.priorityMaterials) {
+    private static void removeUnwantedMaterial(List<Location> locs) {
+        for (Location l : locs) {
+            if (!Core.requiredItem.equals(Material.ENCHANTMENT_TABLE)) {
+                if (Main.world.getBlockAt(l).getType().equals(Material.BOOKSHELF)) {
+                    int rng = RANDOM.nextInt(ResourcesEnum.values().length - 5);
+                    l.getWorld().getBlockAt(l).setType(ResourcesEnum.values()[rng].block);
+                    l.getWorld().getBlockAt(l).setData(ResourcesEnum.values()[rng].blockData);
+                }
+            }
+            if (!Core.requiredItem.equals(Material.LAPIS_BLOCK)) {
+                if (Main.world.getBlockAt(l).getType().equals(Material.LAPIS_ORE)) {
+                    int rng = RANDOM.nextInt(ResourcesEnum.values().length - 5);
+                    l.getWorld().getBlockAt(l).setType(ResourcesEnum.values()[rng].block);
+                    l.getWorld().getBlockAt(l).setData(ResourcesEnum.values()[rng].blockData);
+                }
+            }
+            if (!Core.requiredItem.equals(Material.EMERALD_BLOCK)) {
+                if (Main.world.getBlockAt(l).getType().equals(Material.EMERALD_ORE)) {
+                    int rng = RANDOM.nextInt(ResourcesEnum.values().length - 5);
+                    l.getWorld().getBlockAt(l).setType(ResourcesEnum.values()[rng].block);
+                    l.getWorld().getBlockAt(l).setData(ResourcesEnum.values()[rng].blockData);
+                }
+            }
+            if (!Core.requiredItem.equals(Material.ARMOR_STAND)) {
+                if (Main.world.getBlockAt(l).getType().equals(Material.STEP)) {
+                    int rng = RANDOM.nextInt(ResourcesEnum.values().length - 5);
+                    l.getWorld().getBlockAt(l).setType(ResourcesEnum.values()[rng].block);
+                    l.getWorld().getBlockAt(l).setData(ResourcesEnum.values()[rng].blockData);
+                }
+            }
+        }
+    }
+
+    private static void placeRessources(List<Location> locs) {
+        for (Location l : locs) {
             int rng = RANDOM.nextInt(ResourcesEnum.values().length);
             Material mat = ResourcesEnum.values()[rng].block;
             byte data = ResourcesEnum.values()[rng].blockData;
 
-            if (!Core.requiredItem.equals(Material.ENCHANTMENT_TABLE)) {
-                while (mat.equals(Material.BOOKSHELF)) {
-                    rng = RANDOM.nextInt(ResourcesEnum.values().length);
-                    mat = ResourcesEnum.values()[rng].block;
-                    data = ResourcesEnum.values()[rng].blockData;
-                }
-            }
-
-            if (!Core.requiredItem.equals(Material.LAPIS_BLOCK)) {
-                while (mat.equals(Material.LAPIS_ORE)) {
-                    rng = RANDOM.nextInt(ResourcesEnum.values().length);
-                    mat = ResourcesEnum.values()[rng].block;
-                    data = ResourcesEnum.values()[rng].blockData;
-                }
-            }
-
-            if (!Core.requiredItem.equals(Material.EMERALD_BLOCK)) {
-                while (mat.equals(Material.EMERALD_ORE)) {
-                    rng = RANDOM.nextInt(ResourcesEnum.values().length);
-                    mat = ResourcesEnum.values()[rng].block;
-                    data = ResourcesEnum.values()[rng].blockData;
-                }
-            }
-
-            if (!Core.requiredItem.equals(Material.ARMOR_STAND)) {
-                while (mat.equals(Material.STEP)) {
-                    rng = RANDOM.nextInt(ResourcesEnum.values().length);
-                    mat = ResourcesEnum.values()[rng].block;
-                    data = ResourcesEnum.values()[rng].blockData;
-                }
-            }
-
             l.getWorld().getBlockAt(l).setType(mat);
             l.getWorld().getBlockAt(l).setData(data);
         }
+    }
+
+    public static void generateRessrouces(CraftEnum craft) {
+        placeRessources(Main.priorityMaterials);
+        removeUnwantedMaterial(Main.priorityMaterials);
 
         final List<Location> priorityLocation = new ArrayList<>(Main.priorityMaterials);
 
@@ -159,46 +165,8 @@ public class Utils {
             priorityLocation.remove(l);
         }
 
-        for (Location l : Main.materials) {
-            int rng = RANDOM.nextInt(ResourcesEnum.values().length);
-            Material mat = ResourcesEnum.values()[rng].block;
-            byte data = ResourcesEnum.values()[rng].blockData;
-
-            if (!Core.requiredItem.equals(Material.ENCHANTMENT_TABLE)) {
-                while (mat.equals(Material.BOOKSHELF)) {
-                    rng = RANDOM.nextInt(ResourcesEnum.values().length);
-                    mat = ResourcesEnum.values()[rng].block;
-                    data = ResourcesEnum.values()[rng].blockData;
-                }
-            }
-
-            if (!Core.requiredItem.equals(Material.LAPIS_BLOCK)) {
-                while (mat.equals(Material.LAPIS_ORE)) {
-                    rng = RANDOM.nextInt(ResourcesEnum.values().length);
-                    mat = ResourcesEnum.values()[rng].block;
-                    data = ResourcesEnum.values()[rng].blockData;
-                }
-            }
-
-            if (!Core.requiredItem.equals(Material.EMERALD_BLOCK)) {
-                while (mat.equals(Material.EMERALD_ORE)) {
-                    rng = RANDOM.nextInt(ResourcesEnum.values().length);
-                    mat = ResourcesEnum.values()[rng].block;
-                    data = ResourcesEnum.values()[rng].blockData;
-                }
-            }
-
-            if (!Core.requiredItem.equals(Material.ARMOR_STAND)) {
-                while (mat.equals(Material.STEP)) {
-                    rng = RANDOM.nextInt(ResourcesEnum.values().length);
-                    mat = ResourcesEnum.values()[rng].block;
-                    data = ResourcesEnum.values()[rng].blockData;
-                }
-            }
-
-            l.getWorld().getBlockAt(l).setType(mat);
-            l.getWorld().getBlockAt(l).setData(data);
-        }
+        placeRessources(Main.materials);
+        removeUnwantedMaterial(Main.materials);
     }
 
     public static void cleanWorkshop() {
