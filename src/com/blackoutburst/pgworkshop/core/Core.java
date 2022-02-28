@@ -33,15 +33,14 @@ public class Core {
         Main.world.getBlockAt(Main.gameSpawn).setType(Material.AIR);
         placeItemFrame();
 
-        Main.gameRunning = true;
         Utils.countdown();
         new BukkitRunnable() {
             @Override
             public void run() {
+                Main.gameRunning = true;
                 Main.world.setDifficulty(Difficulty.PEACEFUL);
                 Utils.chooseCraft();
                 for (Player p : Bukkit.getOnlinePlayers()) {
-                    Utils.generateRessrouces();
                     p.getInventory().clear();
                     p.setGameMode(GameMode.SURVIVAL);
                     p.teleport(Main.gameSpawn);

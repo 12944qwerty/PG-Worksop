@@ -7,6 +7,7 @@ public enum ResourcesEnum {
     STONE(Material.STONE, (byte) 0, Material.COBBLESTONE, (byte) 0, Sound.DIG_STONE),
     GRANITE(Material.STONE, (byte) 1, Material.COBBLESTONE, (byte) 0, Sound.DIG_STONE),
     LOG(Material.LOG, (byte) 1, Material.LOG, (byte) 0, Sound.DIG_WOOD),
+    COAL_ORE(Material.COAL_ORE, (byte) 0, Material.COAL, (byte) 0, Sound.DIG_STONE),
     IRON_ORE(Material.IRON_ORE, (byte) 0, Material.IRON_ORE, (byte) 0, Sound.DIG_STONE),
     GOLD_ORE(Material.GOLD_ORE, (byte) 0, Material.GOLD_ORE, (byte) 0, Sound.DIG_STONE),
     OBSIDIAN(Material.OBSIDIAN, (byte) 0, Material.OBSIDIAN, (byte) 0, Sound.DIG_STONE),

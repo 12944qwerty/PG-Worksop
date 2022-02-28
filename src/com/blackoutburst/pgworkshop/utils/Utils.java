@@ -14,6 +14,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Utils {
@@ -42,6 +44,7 @@ public class Utils {
         for (Player player : Bukkit.getOnlinePlayers()) {
             NMSItemFrame.setItem(player, frame, stack);
         }
+        generateRessrouces(CraftEnum.values()[rng]);
 
     }
 
@@ -85,19 +88,113 @@ public class Utils {
         return (false);
     }
 
-    public static void generateRessrouces() {
+    public static void generateRessrouces(CraftEnum craft) {
         for (Location l : Main.priorityMaterials) {
-            final int rng = RANDOM.nextInt(ResourcesEnum.values().length);
-            final Material mat = ResourcesEnum.values()[rng].block;
-            final byte data = ResourcesEnum.values()[rng].blockData;
+            int rng = RANDOM.nextInt(ResourcesEnum.values().length);
+            Material mat = ResourcesEnum.values()[rng].block;
+            byte data = ResourcesEnum.values()[rng].blockData;
+
+            if (!Core.requiredItem.equals(Material.ENCHANTMENT_TABLE)) {
+                while (mat.equals(Material.BOOKSHELF)) {
+                    rng = RANDOM.nextInt(ResourcesEnum.values().length);
+                    mat = ResourcesEnum.values()[rng].block;
+                    data = ResourcesEnum.values()[rng].blockData;
+                }
+            }
+
+            if (!Core.requiredItem.equals(Material.LAPIS_BLOCK)) {
+                while (mat.equals(Material.LAPIS_ORE)) {
+                    rng = RANDOM.nextInt(ResourcesEnum.values().length);
+                    mat = ResourcesEnum.values()[rng].block;
+                    data = ResourcesEnum.values()[rng].blockData;
+                }
+            }
+
+            if (!Core.requiredItem.equals(Material.EMERALD_BLOCK)) {
+                while (mat.equals(Material.EMERALD_ORE)) {
+                    rng = RANDOM.nextInt(ResourcesEnum.values().length);
+                    mat = ResourcesEnum.values()[rng].block;
+                    data = ResourcesEnum.values()[rng].blockData;
+                }
+            }
+
+            if (!Core.requiredItem.equals(Material.ARMOR_STAND)) {
+                while (mat.equals(Material.STEP)) {
+                    rng = RANDOM.nextInt(ResourcesEnum.values().length);
+                    mat = ResourcesEnum.values()[rng].block;
+                    data = ResourcesEnum.values()[rng].blockData;
+                }
+            }
 
             l.getWorld().getBlockAt(l).setType(mat);
             l.getWorld().getBlockAt(l).setData(data);
         }
+
+        final List<Location> priorityLocation = new ArrayList<>(Main.priorityMaterials);
+
+        for (Material mat : craft.mats) {
+            if (mat.equals(Material.AIR)) continue;
+            final Location l = priorityLocation.get(RANDOM.nextInt(priorityLocation.size()));
+
+            String matName = "STONE";
+
+            switch (mat) {
+                case COAL: matName = "COAL_ORE"; break;
+                case WOOD: matName = "LOG"; break;
+                case STICK: matName = "LOG"; break;
+                case COBBLESTONE: matName = RANDOM.nextInt(2) == 0 ? "STONE" : "GRANITE"; break;
+                case IRON_INGOT: matName = "IRON_ORE"; break;
+                case GOLD_INGOT: matName = "GOLD_ORE"; break;
+                case REDSTONE: matName = "REDSTONE_ORE"; break;
+                case DIAMOND: matName = "DIAMOND_ORE"; break;
+                case STRING: matName = "COBWEB"; break;
+                case BOOK: matName = "BOOKSHELF"; break;
+                case INK_SACK: matName = "LAPIS_ORE"; break;
+                case EMERALD: matName = "EMERALD_ORE"; break;
+                case STEP: matName = RANDOM.nextInt(2) == 0 ? "SANDSTONE_SLAB" : "STONE_SLAB"; break;
+            }
+
+            l.getWorld().getBlockAt(l).setType(ResourcesEnum.valueOf(matName).block);
+            l.getWorld().getBlockAt(l).setData(ResourcesEnum.valueOf(matName).blockData);
+            priorityLocation.remove(l);
+        }
+
         for (Location l : Main.materials) {
-            final int rng = RANDOM.nextInt(ResourcesEnum.values().length);
-            final Material mat = ResourcesEnum.values()[rng].block;
-            final byte data = ResourcesEnum.values()[rng].blockData;
+            int rng = RANDOM.nextInt(ResourcesEnum.values().length);
+            Material mat = ResourcesEnum.values()[rng].block;
+            byte data = ResourcesEnum.values()[rng].blockData;
+
+            if (!Core.requiredItem.equals(Material.ENCHANTMENT_TABLE)) {
+                while (mat.equals(Material.BOOKSHELF)) {
+                    rng = RANDOM.nextInt(ResourcesEnum.values().length);
+                    mat = ResourcesEnum.values()[rng].block;
+                    data = ResourcesEnum.values()[rng].blockData;
+                }
+            }
+
+            if (!Core.requiredItem.equals(Material.LAPIS_BLOCK)) {
+                while (mat.equals(Material.LAPIS_ORE)) {
+                    rng = RANDOM.nextInt(ResourcesEnum.values().length);
+                    mat = ResourcesEnum.values()[rng].block;
+                    data = ResourcesEnum.values()[rng].blockData;
+                }
+            }
+
+            if (!Core.requiredItem.equals(Material.EMERALD_BLOCK)) {
+                while (mat.equals(Material.EMERALD_ORE)) {
+                    rng = RANDOM.nextInt(ResourcesEnum.values().length);
+                    mat = ResourcesEnum.values()[rng].block;
+                    data = ResourcesEnum.values()[rng].blockData;
+                }
+            }
+
+            if (!Core.requiredItem.equals(Material.ARMOR_STAND)) {
+                while (mat.equals(Material.STEP)) {
+                    rng = RANDOM.nextInt(ResourcesEnum.values().length);
+                    mat = ResourcesEnum.values()[rng].block;
+                    data = ResourcesEnum.values()[rng].blockData;
+                }
+            }
 
             l.getWorld().getBlockAt(l).setType(mat);
             l.getWorld().getBlockAt(l).setData(data);
