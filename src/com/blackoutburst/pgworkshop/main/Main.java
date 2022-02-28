@@ -9,6 +9,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.block.Furnace;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -28,7 +29,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -102,6 +102,19 @@ public class Main extends JavaPlugin implements Listener {
                 event.getSlotType().equals(InventoryType.SlotType.CRAFTING)) {
             event.setCancelled(true);
             event.getWhoClicked().sendMessage("§cYou must use the crafting table!");
+        }
+    }
+
+    @EventHandler
+    public void onInteraction(PlayerInteractEvent event) {
+        if (!gameRunning) return;
+        if (event.getClickedBlock() == null) return;
+        if (event.getClickedBlock().getType().equals(Material.FURNACE) ||
+            event.getClickedBlock().getType().equals(Material.BURNING_FURNACE)) {
+            Furnace furnace = (Furnace) event.getClickedBlock().getState();
+            furnace.setBurnTime((short) 1);
+            furnace.setCookTime((short) 0);
+            furnace.getInventory().setFuel(new ItemStack(Material.COAL, 64));
         }
     }
 
