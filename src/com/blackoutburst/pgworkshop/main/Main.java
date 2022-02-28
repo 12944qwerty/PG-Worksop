@@ -3,6 +3,7 @@ package com.blackoutburst.pgworkshop.main;
 import com.blackoutburst.pgworkshop.commands.CommandEnd;
 import com.blackoutburst.pgworkshop.commands.CommandMaxScore;
 import com.blackoutburst.pgworkshop.commands.CommandStart;
+import com.blackoutburst.pgworkshop.core.Core;
 import com.blackoutburst.pgworkshop.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -12,17 +13,20 @@ import org.bukkit.block.Furnace;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityInteractEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.inventory.FurnaceSmeltEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
@@ -79,7 +83,7 @@ public class Main extends JavaPlugin implements Listener {
             itemFrames.add(new Location(world, x, y, z));
         }
 
-        foremanLocation = new Location(world, -1768.5f, 39, 762.5f);
+        foremanLocation = new Location(world, -1768.5f, 39, 762.5f, 180, 0);
         spawn = new Location(world, -1774.5f, 39, 739.5f, 0, 0);
         gameSpawn = new Location(world, -1768.5f, 39, 759.5f, 0, 0);
     }
@@ -98,6 +102,15 @@ public class Main extends JavaPlugin implements Listener {
         }
     }
 
+    @EventHandler
+    public void onEntityUse(PlayerInteractEntityEvent event) {
+        if (!gameRunning) return;
+        if (event.getRightClicked().getType().equals(EntityType.VILLAGER) &&
+            event.getPlayer().getItemInHand().equals(Core.requiredItem)) {
+            Utils.chooseCraft(event.getPlayer());
+            event.setCancelled(true);
+        }
+    }
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {

@@ -22,18 +22,19 @@ public class Utils {
 
     private static final Random RANDOM = new Random();
 
-    public static void chooseCraft() {
+    public static void chooseCraft(Player player) {
         final int rng = RANDOM.nextInt(CraftEnum.values().length);
 
         Core.requiredItem = CraftEnum.values()[rng].item;
+        player.sendMessage("§eYou need to craft a §r"+CraftEnum.values()[rng].name);
 
         for (int i = 0; i < Core.frames.size() - 1; i++) {
             final NMSEntities frame = Core.frames.get(i);
             final Material material = CraftEnum.values()[rng].mats[i];
             final ItemStack stack = new ItemStack(material, 1, (byte) (material.equals(Material.INK_SACK) ? 4 : 0));
 
-            for (Player player : Bukkit.getOnlinePlayers()) {
-                NMSItemFrame.setItem(player, frame, stack);
+            for (Player p : Bukkit.getOnlinePlayers()) {
+                NMSItemFrame.setItem(p, frame, stack);
             }
         }
 
@@ -41,8 +42,8 @@ public class Utils {
         final Material material = CraftEnum.values()[rng].item;
         final ItemStack stack = new ItemStack(material, 1, (byte) 0);
 
-        for (Player player : Bukkit.getOnlinePlayers()) {
-            NMSItemFrame.setItem(player, frame, stack);
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            NMSItemFrame.setItem(p, frame, stack);
         }
         generateRessrouces(CraftEnum.values()[rng]);
 
