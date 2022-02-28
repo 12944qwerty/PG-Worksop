@@ -1,14 +1,9 @@
 package com.blackoutburst.pgworkshop.core;
 
 import com.blackoutburst.pgworkshop.main.Main;
-import com.blackoutburst.pgworkshop.nms.NMSBlockPosition;
-import com.blackoutburst.pgworkshop.nms.NMSEntities;
-import com.blackoutburst.pgworkshop.nms.NMSEnumDirection;
-import com.blackoutburst.pgworkshop.nms.NMSSpawnEntity;
+import com.blackoutburst.pgworkshop.nms.*;
 import com.blackoutburst.pgworkshop.utils.Utils;
 import org.bukkit.*;
-import org.bukkit.block.BlockFace;
-import org.bukkit.entity.ItemFrame;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -56,6 +51,12 @@ public class Core {
     }
 
     public static void end() {
+        for (NMSEntities e : frames) {
+            for (Player p : Bukkit.getOnlinePlayers()) {
+                NMSEntityDestroy.send(p, e.getID());
+            }
+        }
+
         Main.gameRunning = false;
         Utils.cleanWorkshop();
         for (Player p : Bukkit.getOnlinePlayers()) {
