@@ -1,6 +1,5 @@
 package com.blackoutburst.pgworkshop.commands;
 
-import com.blackoutburst.pgworkshop.core.Core;
 import com.blackoutburst.pgworkshop.main.Main;
 import org.bukkit.command.CommandSender;
 
