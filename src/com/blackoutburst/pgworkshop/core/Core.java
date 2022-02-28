@@ -73,7 +73,6 @@ public class Core {
         foreman.remove();
         for (NMSEntities e : frames) {
             for (Player p : Bukkit.getOnlinePlayers()) {
-                p.sendMessage("§aYou completed "+currentScore+" craft in: §b"+Utils.ROUND.format((Float.valueOf(Duration.between(Core.gameBegin, Core.gameEnd).toMillis()) / 1000.0f))+"s");
                 NMSEntityDestroy.send(p, e.getID());
             }
         }
@@ -82,6 +81,7 @@ public class Core {
         Main.gameRunning = false;
         Utils.cleanWorkshop();
         for (Player p : Bukkit.getOnlinePlayers()) {
+            p.sendMessage("§aYou completed "+currentScore+" craft in: §b"+Utils.ROUND.format((Float.valueOf(Duration.between(Core.gameBegin, Core.gameEnd).toMillis()) / 1000.0f))+"s");
             p.getInventory().clear();
             p.teleport(Main.spawn);
         }

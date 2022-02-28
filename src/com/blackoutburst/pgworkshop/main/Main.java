@@ -5,10 +5,7 @@ import com.blackoutburst.pgworkshop.commands.CommandMaxScore;
 import com.blackoutburst.pgworkshop.commands.CommandStart;
 import com.blackoutburst.pgworkshop.core.Core;
 import com.blackoutburst.pgworkshop.utils.Utils;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.block.Furnace;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -113,6 +110,8 @@ public class Main extends JavaPlugin implements Listener {
         if (event.getRightClicked().getType().equals(EntityType.VILLAGER) &&
             event.getPlayer().getItemInHand().getType().equals(Core.requiredItem)) {
             Core.craftEnd = Instant.now();
+            event.getPlayer().getInventory().clear();
+            world.playSound(event.getPlayer().getLocation(), Sound.LEVEL_UP, 3f, 1f);
             event.getPlayer().sendMessage("§aYou completed this craft in: §b"+Utils.ROUND.format((Float.valueOf(Duration.between(Core.craftBegin, Core.craftEnd).toMillis()) / 1000.0f))+"s");
             Core.currentScore++;
             if (Core.currentScore >= maxScore) {
