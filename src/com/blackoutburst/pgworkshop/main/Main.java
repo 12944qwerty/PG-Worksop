@@ -154,31 +154,36 @@ public class Main extends JavaPlugin implements Listener {
     }
 
     @EventHandler
-    public void onFurnaceSmelt(FurnaceSmeltEvent event) {
-        final Furnace furnace = (Furnace) event.getBlock().getState();
-        furnace.setCookTime((short) 200);
-    }
-
-    @EventHandler
     public void onInteraction(PlayerInteractEvent event) {
         if (!gameRunning) return;
         if (event.getClickedBlock() == null) return;
         if (event.getClickedBlock().getType().equals(Material.FURNACE) ||
             event.getClickedBlock().getType().equals(Material.BURNING_FURNACE)) {
             final Furnace furnace = (Furnace) event.getClickedBlock().getState();
+            furnace.getInventory().setFuel(new ItemStack(Material.COAL, 64));
+
             new BukkitRunnable() {
                 int count = 0;
                 @Override
                 public void run() {
-                    if (count >= 100) {
+                    if (count >= 200) {
                         this.cancel();
                     }
-                    furnace.setCookTime((short) 200);
+                    ItemStack stack = furnace.getInventory().getSmelting();
+                    if (stack != null) {
+                        if (stack.getType().equals(Material.IRON_ORE)) {
+                            furnace.getInventory().setSmelting(new ItemStack(Material.AIR));
+                            furnace.getInventory().setResult(new ItemStack(Material.IRON_INGOT, stack.getAmount()));
+                        }
+                        if (stack.getType().equals(Material.GOLD_ORE)) {
+                            furnace.getInventory().setSmelting(new ItemStack(Material.AIR));
+                            furnace.getInventory().setResult(new ItemStack(Material.GOLD_INGOT, stack.getAmount()));
+                        }
+                    }
                     count++;
                 }
-            }.runTaskTimer(Main.getPlugin(Main.class), 0L, 0L);
+            }.runTaskTimer(Main.getPlugin(Main.class), 1L, 0L);
 
-            furnace.getInventory().setFuel(new ItemStack(Material.COAL, 64));
         }
     }
 
