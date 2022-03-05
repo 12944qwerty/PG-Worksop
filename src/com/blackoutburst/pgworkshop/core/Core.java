@@ -70,10 +70,12 @@ public class Core {
             board.set(p,6, "§e§m-------------------- ");
         }
 
+        Main.gameRunning = true;
+
         currentScore = 0;
-        gameBegin = Instant.now();
         Main.world.getBlockAt(Main.gameSpawn).setType(Material.AIR);
         placeItemFrame();
+        Main.world.setDifficulty(Difficulty.PEACEFUL);
 
         foreman = Main.world.spawn(Main.foremanLocation, Villager.class);
         foreman.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100000, 255, false, false));
@@ -82,8 +84,7 @@ public class Core {
         new BukkitRunnable() {
             @Override
             public void run() {
-                Main.gameRunning = true;
-                Main.world.setDifficulty(Difficulty.PEACEFUL);
+                gameBegin = Instant.now();
                 for (Player p : Bukkit.getOnlinePlayers()) {
                     Utils.chooseCraft(p);
                 }
