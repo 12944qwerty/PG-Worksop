@@ -125,7 +125,7 @@ public class Main extends JavaPlugin implements Listener {
             event.setCancelled(true);
         }
         if (event.getRightClicked().getType().equals(EntityType.VILLAGER) &&
-            event.getPlayer().getItemInHand().getType().equals(Core.requiredItem)) {
+            event.getPlayer().getInventory().contains(Core.requiredItem)) {
             Core.craftEnd = Instant.now();
             event.getPlayer().getInventory().clear();
             world.playSound(event.getPlayer().getLocation(), Sound.LEVEL_UP, 3f, 1f);
