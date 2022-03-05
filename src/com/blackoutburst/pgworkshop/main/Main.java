@@ -88,7 +88,7 @@ public class Main extends JavaPlugin implements Listener {
             itemFrames.add(new Location(world, x, y, z));
         }
 
-        foremanLocation = new Location(world, -1768.5f, 39, 762.5f, 180, 0);
+        foremanLocation = new Location(world, -1768f, 39, 762.5f, 180, 0);
         spawn = new Location(world, -1774.5f, 39, 739.5f, 0, 0);
         gameSpawn = new Location(world, -1768.5f, 39, 759.5f, 0, 0);
 
