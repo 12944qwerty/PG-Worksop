@@ -1,101 +1,141 @@
 loc:
   '0':
     world: world
-    x: -1757
+    x: -1773
     y: 40
-    z: 755
+    z: 759
+    yaw: 0.0
+    pitch: 0.0
   '1':
     world: world
-    x: -1757
+    x: -1773
     y: 40
-    z: 756
+    z: 758
+    yaw: 0.0
+    pitch: 0.0
   '2':
     world: world
-    x: -1757
+    x: -1773
     y: 40
     z: 757
+    yaw: 0.0
+    pitch: 0.0
   '3':
     world: world
-    x: -1757
+    x: -1773
     y: 40
-    z: 758
+    z: 756
+    yaw: 0.0
+    pitch: 0.0
   '4':
     world: world
-    x: -1757
+    x: -1773
     y: 40
-    z: 759
+    z: 755
+    yaw: 0.0
+    pitch: 0.0
   '5':
     world: world
-    x: -1757
+    x: -1773
     y: 42
     z: 759
+    yaw: 0.0
+    pitch: 0.0
   '6':
     world: world
-    x: -1757
+    x: -1773
     y: 42
     z: 758
+    yaw: 0.0
+    pitch: 0.0
   '7':
     world: world
-    x: -1757
+    x: -1773
     y: 42
     z: 757
+    yaw: 0.0
+    pitch: 0.0
   '8':
     world: world
-    x: -1757
+    x: -1773
     y: 42
     z: 756
+    yaw: 0.0
+    pitch: 0.0
   '9':
     world: world
-    x: -1757
+    x: -1773
     y: 42
     z: 755
+    yaw: 0.0
+    pitch: 0.0
   '10':
     world: world
     x: -1773
     y: 40
-    z: 759
+    z: 751
+    yaw: 0.0
+    pitch: 0.0
   '11':
     world: world
     x: -1773
     y: 40
-    z: 758
+    z: 750
+    yaw: 0.0
+    pitch: 0.0
   '12':
     world: world
     x: -1773
     y: 40
-    z: 757
+    z: 749
+    yaw: 0.0
+    pitch: 0.0
   '13':
     world: world
     x: -1773
     y: 40
-    z: 756
+    z: 748
+    yaw: 0.0
+    pitch: 0.0
   '14':
     world: world
     x: -1773
     y: 40
-    z: 755
+    z: 747
+    yaw: 0.0
+    pitch: 0.0
   '15':
     world: world
     x: -1773
     y: 42
-    z: 755
+    z: 747
+    yaw: 0.0
+    pitch: 0.0
   '16':
     world: world
     x: -1773
     y: 42
-    z: 756
+    z: 748
+    yaw: 0.0
+    pitch: 0.0
   '17':
     world: world
     x: -1773
     y: 42
-    z: 757
+    z: 749
+    yaw: 0.0
+    pitch: 0.0
   '18':
     world: world
     x: -1773
     y: 42
-    z: 758
+    z: 750
+    yaw: 0.0
+    pitch: 0.0
   '19':
     world: world
     x: -1773
     y: 42
-    z: 759
+    z: 751
+    yaw: 0.0
+    pitch: 0.0
