@@ -50,6 +50,26 @@ public class Core {
     }
 
     public static void start() {
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            p.teleport(Main.gameSpawn);
+            p.getInventory().clear();
+            p.setGameMode(GameMode.SURVIVAL);
+            p.getInventory().setHelmet(new ItemStack(Material.CHAINMAIL_HELMET));
+            p.getInventory().setChestplate(new ItemStack(Material.CHAINMAIL_CHESTPLATE));
+            p.getInventory().setLeggings(new ItemStack(Material.CHAINMAIL_LEGGINGS));
+            p.getInventory().setBoots(new ItemStack(Material.CHAINMAIL_BOOTS));
+            board = new NMSBoard(p, "§6Workshop");
+            board.set(p,15, "§e§m--------------------");
+            board.set(p, 14, " ");
+            board.set(p, 13, "Craft: §e"+craftName);
+            board.set(p, 12, "  ");
+            board.set(p, 11, "Progress: §a"+currentScore+"/"+Main.maxScore);
+            board.set(p, 10, "   ");
+            board.set(p, 8, "Time: §b"+Utils.ROUND.format(((float) Duration.between(Core.gameBegin, Instant.now()).toMillis() / 1000.0f))+"s");
+            board.set(p, 7, "    ");
+            board.set(p,6, "§e§m-------------------- ");
+        }
+
         currentScore = 0;
         gameBegin = Instant.now();
         Main.world.getBlockAt(Main.gameSpawn).setType(Material.AIR);
@@ -65,25 +85,7 @@ public class Core {
                 Main.gameRunning = true;
                 Main.world.setDifficulty(Difficulty.PEACEFUL);
                 for (Player p : Bukkit.getOnlinePlayers()) {
-                    p.getInventory().setHelmet(new ItemStack(Material.CHAINMAIL_HELMET));
-                    p.getInventory().setChestplate(new ItemStack(Material.CHAINMAIL_CHESTPLATE));
-                    p.getInventory().setLeggings(new ItemStack(Material.CHAINMAIL_LEGGINGS));
-                    p.getInventory().setBoots(new ItemStack(Material.CHAINMAIL_BOOTS));
-
                     Utils.chooseCraft(p);
-                    board = new NMSBoard(p, "§6Workshop");
-                    board.set(p,15, "§e§m--------------------");
-                    board.set(p, 14, " ");
-                    board.set(p, 13, "Craft: §e"+craftName);
-                    board.set(p, 12, "  ");
-                    board.set(p, 11, "Progress: §a"+currentScore+"/"+Main.maxScore);
-                    board.set(p, 10, "   ");
-                    board.set(p, 8, "Time: §b"+Utils.ROUND.format(((float) Duration.between(Core.gameBegin, Instant.now()).toMillis() / 1000.0f))+"s");
-                    board.set(p, 7, "    ");
-                    board.set(p,6, "§e§m-------------------- ");
-                    p.getInventory().clear();
-                    p.setGameMode(GameMode.SURVIVAL);
-                    p.teleport(Main.gameSpawn);
                 }
             }
         }.runTaskLater(Main.getPlugin(Main.class), 60L);
