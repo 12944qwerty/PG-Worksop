@@ -48,7 +48,13 @@ public class Main extends JavaPlugin implements Listener {
     public static Location gameSpawn;
     public static Location foremanLocation;
     public static boolean gameRunning = false;
-    public static int maxScore = 6;
+    public static int maxScore = 5;
+
+    @Override
+    public void onDisable() {
+        if (gameRunning)
+            Core.end();
+    }
 
     @Override
     public void onEnable() {
