@@ -44,7 +44,8 @@ public class Core {
             frames.add(itemFrame);
 
             for (Player p : Bukkit.getOnlinePlayers()) {
-                NMSSpawnEntity.send(p, itemFrame);
+                NMSSpawnEntity.send(p, itemFrame, 2);
+                NMSEntityMetadata.send(p, itemFrame);
             }
         }
     }
@@ -65,12 +66,11 @@ public class Core {
             board.set(p, 12, "  ");
             board.set(p, 11, "Progress: §a"+currentScore+"/"+Main.maxScore);
             board.set(p, 10, "   ");
-            board.set(p, 8, "Time: §b"+Utils.ROUND.format(((float) Duration.between(Core.gameBegin, Instant.now()).toMillis() / 1000.0f))+"s");
+            board.set(p, 8, "Time: §b0:00s");
             board.set(p, 7, "    ");
             board.set(p,6, "§e§m-------------------- ");
         }
 
-        Main.gameRunning = true;
 
         currentScore = 0;
         Main.world.getBlockAt(Main.gameSpawn).setType(Material.AIR);
@@ -84,6 +84,7 @@ public class Core {
         new BukkitRunnable() {
             @Override
             public void run() {
+                Main.gameRunning = true;
                 gameBegin = Instant.now();
                 for (Player p : Bukkit.getOnlinePlayers()) {
                     Utils.chooseCraft(p);
@@ -96,7 +97,7 @@ public class Core {
         new BukkitRunnable() {
             @Override
             public void run() {
-                if (board != null) {
+                if (board != null && Main.gameRunning) {
                     for (Player p : Bukkit.getOnlinePlayers()) {
                         board.set(p, 8, "Time: §b" + Utils.ROUND.format(((float) Duration.between(Core.gameBegin, Instant.now()).toMillis() / 1000.0f)) + "s");
                     }
