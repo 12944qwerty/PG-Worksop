@@ -272,7 +272,7 @@ public enum CraftEnum {
             Material.IRON_INGOT, Material.IRON_INGOT, Material.IRON_INGOT,
             Material.AIR, Material.AIR, Material.AIR),
 
-    SIGN("Sing", Material.SIGN,
+    SIGN("Sign", Material.SIGN,
             Material.WOOD, Material.WOOD, Material.WOOD,
             Material.WOOD, Material.WOOD, Material.WOOD,
             Material.AIR, Material.STICK, Material.AIR),
