@@ -6,6 +6,7 @@ import com.blackoutburst.pgworkshop.utils.Utils;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -64,6 +65,11 @@ public class Core {
                 Main.gameRunning = true;
                 Main.world.setDifficulty(Difficulty.PEACEFUL);
                 for (Player p : Bukkit.getOnlinePlayers()) {
+                    p.getInventory().setHelmet(new ItemStack(Material.CHAINMAIL_HELMET));
+                    p.getInventory().setChestplate(new ItemStack(Material.CHAINMAIL_CHESTPLATE));
+                    p.getInventory().setLeggings(new ItemStack(Material.CHAINMAIL_LEGGINGS));
+                    p.getInventory().setBoots(new ItemStack(Material.CHAINMAIL_BOOTS));
+
                     Utils.chooseCraft(p);
                     board = new NMSBoard(p, "§6Workshop");
                     board.set(p,15, "§e§m--------------------");
@@ -109,6 +115,11 @@ public class Core {
         Main.gameRunning = false;
         Utils.cleanWorkshop();
         for (Player p : Bukkit.getOnlinePlayers()) {
+            p.getInventory().setHelmet(new ItemStack(Material.AIR));
+            p.getInventory().setChestplate(new ItemStack(Material.AIR));
+            p.getInventory().setLeggings(new ItemStack(Material.AIR));
+            p.getInventory().setBoots(new ItemStack(Material.AIR));
+
             board.clear(p);
             board = null;
             p.sendMessage("§aYou completed "+currentScore+" craft in: §b"+Utils.ROUND.format(((float) Duration.between(Core.gameBegin, Core.gameEnd).toMillis() / 1000.0f))+"s");
