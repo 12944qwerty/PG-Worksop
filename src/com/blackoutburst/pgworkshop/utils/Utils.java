@@ -97,30 +97,37 @@ public class Utils {
 
     private static void removeUnwantedMaterial(List<Location> locs) {
         for (Location l : locs) {
+            if (!Core.requiredItem.equals(Material.TORCH) && !Core.requiredItem.equals(Material.COAL_BLOCK)) {
+                if (Main.world.getBlockAt(l).getType().equals(Material.COAL_ORE)) {
+                    int rng = RANDOM.nextInt(ResourcesEnum.values().length - 6);
+                    l.getWorld().getBlockAt(l).setType(ResourcesEnum.values()[rng].block);
+                    l.getWorld().getBlockAt(l).setData(ResourcesEnum.values()[rng].blockData);
+                }
+            }
             if (!Core.requiredItem.equals(Material.ENCHANTMENT_TABLE)) {
                 if (Main.world.getBlockAt(l).getType().equals(Material.BOOKSHELF)) {
-                    int rng = RANDOM.nextInt(ResourcesEnum.values().length - 5);
+                    int rng = RANDOM.nextInt(ResourcesEnum.values().length - 6);
                     l.getWorld().getBlockAt(l).setType(ResourcesEnum.values()[rng].block);
                     l.getWorld().getBlockAt(l).setData(ResourcesEnum.values()[rng].blockData);
                 }
             }
             if (!Core.requiredItem.equals(Material.LAPIS_BLOCK)) {
                 if (Main.world.getBlockAt(l).getType().equals(Material.LAPIS_ORE)) {
-                    int rng = RANDOM.nextInt(ResourcesEnum.values().length - 5);
+                    int rng = RANDOM.nextInt(ResourcesEnum.values().length - 6);
                     l.getWorld().getBlockAt(l).setType(ResourcesEnum.values()[rng].block);
                     l.getWorld().getBlockAt(l).setData(ResourcesEnum.values()[rng].blockData);
                 }
             }
             if (!Core.requiredItem.equals(Material.EMERALD_BLOCK)) {
                 if (Main.world.getBlockAt(l).getType().equals(Material.EMERALD_ORE)) {
-                    int rng = RANDOM.nextInt(ResourcesEnum.values().length - 5);
+                    int rng = RANDOM.nextInt(ResourcesEnum.values().length - 6);
                     l.getWorld().getBlockAt(l).setType(ResourcesEnum.values()[rng].block);
                     l.getWorld().getBlockAt(l).setData(ResourcesEnum.values()[rng].blockData);
                 }
             }
             if (!Core.requiredItem.equals(Material.ARMOR_STAND)) {
                 if (Main.world.getBlockAt(l).getType().equals(Material.STEP)) {
-                    int rng = RANDOM.nextInt(ResourcesEnum.values().length - 5);
+                    int rng = RANDOM.nextInt(ResourcesEnum.values().length - 6);
                     l.getWorld().getBlockAt(l).setType(ResourcesEnum.values()[rng].block);
                     l.getWorld().getBlockAt(l).setData(ResourcesEnum.values()[rng].blockData);
                 }
