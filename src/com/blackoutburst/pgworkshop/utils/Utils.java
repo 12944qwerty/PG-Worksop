@@ -160,7 +160,7 @@ public class Utils {
             if (mat.equals(Material.AIR)) continue;
             final Location l = priorityLocation.get(RANDOM.nextInt(priorityLocation.size()));
 
-            String matName = "STONE";
+            String matName = mat.toString();
 
             switch (mat) {
                 case COAL: matName = "COAL_ORE"; break;
