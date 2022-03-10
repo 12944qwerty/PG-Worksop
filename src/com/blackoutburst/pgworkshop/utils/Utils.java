@@ -27,16 +27,17 @@ public class Utils {
     public static final DecimalFormat ROUND = new DecimalFormat("0.00");
 
     public static void chooseCraft(Player player) {
-        final int rng = RANDOM.nextInt(CraftEnum.values().length);
+
+        final int rng = RANDOM.nextInt(Core.possibleCrafts.size());
 
         Core.craftBegin = Instant.now();
-        Core.requiredItem = CraftEnum.values()[rng].item;
-        player.sendMessage("§eYou need to craft a §r"+CraftEnum.values()[rng].name);
-        Core.craftName = CraftEnum.values()[rng].name;
+        Core.requiredItem = Core.possibleCrafts.get(rng).item;
+        player.sendMessage("§eYou need to craft a §r"+Core.possibleCrafts.get(rng).name);
+        Core.craftName = Core.possibleCrafts.get(rng).name;
 
         for (int i = 0; i < Core.frames.size() - 1; i++) {
             final NMSEntities frame = Core.frames.get(i);
-            final Material material = CraftEnum.values()[rng].mats[i];
+            final Material material = Core.possibleCrafts.get(rng).mats[i];
             final ItemStack stack = new ItemStack(material, 1, (byte) (material.equals(Material.INK_SACK) ? 4 : 0));
 
             for (Player p : Bukkit.getOnlinePlayers()) {
@@ -45,14 +46,17 @@ public class Utils {
         }
 
         final NMSEntities frame = Core.frames.get(Core.frames.size() - 1);
-        final Material material = CraftEnum.values()[rng].item;
+        final Material material = Core.possibleCrafts.get(rng).item;
         final ItemStack stack = new ItemStack(material, 1, (byte) 0);
 
         for (Player p : Bukkit.getOnlinePlayers()) {
             NMSItemFrame.setItem(p, frame, stack);
         }
-        generateRessrouces(CraftEnum.values()[rng]);
+        generateRessrouces(Core.possibleCrafts.get(rng));
 
+        if (!Main.allowRepeat) {
+            Core.possibleCrafts.remove(rng);
+        }
     }
 
     public static void playBreakSound(Material material, Location location) {
@@ -65,7 +69,7 @@ public class Utils {
     }
 
     public static ItemStack getDrop(Material material) {
-        Material mat = null;
+        Material mat = Material.AIR;
         byte data = 0;
 
         for (ResourcesEnum res : ResourcesEnum.values()) {

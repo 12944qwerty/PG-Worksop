@@ -1,9 +1,6 @@
 package com.blackoutburst.pgworkshop.main;
 
-import com.blackoutburst.pgworkshop.commands.CommandDelay;
-import com.blackoutburst.pgworkshop.commands.CommandEnd;
-import com.blackoutburst.pgworkshop.commands.CommandMaxScore;
-import com.blackoutburst.pgworkshop.commands.CommandStart;
+import com.blackoutburst.pgworkshop.commands.*;
 import com.blackoutburst.pgworkshop.core.Core;
 import com.blackoutburst.pgworkshop.utils.Utils;
 import org.bukkit.*;
@@ -52,6 +49,7 @@ public class Main extends JavaPlugin implements Listener {
     public static boolean gameRunning = false;
     public static int maxScore = 5;
     public static float timeDelay = 1;
+    public static boolean allowRepeat = false;
 
     @Override
     public void onDisable() {
@@ -237,6 +235,7 @@ public class Main extends JavaPlugin implements Listener {
             case "end": new CommandEnd().execute(sender); break;
             case "maxscore": new CommandMaxScore().execute(sender, args); break;
             case "delay": new CommandDelay().execute(sender, args); break;
+            case "allowrepeat": new CommandAllowRepeat().execute(sender, args); break;
             default: return (true);
         }
         return (true);

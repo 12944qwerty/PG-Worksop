@@ -11,6 +11,9 @@ commands:
   delay:
     description: Change the delay between crafts
     usage: /delay <value>
+  allowRepeat:
+    description: Allow repeating craft
+    usage: /allowRepeat <true/false>
   start:
     description: Start the game
     usage: /start

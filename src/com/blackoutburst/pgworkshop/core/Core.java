@@ -14,6 +14,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Core {
@@ -30,6 +31,8 @@ public class Core {
     public static String craftName = null;
 
     public static Material requiredItem = null;
+
+    public static List<CraftEnum> possibleCrafts;
 
     public static List<NMSEntities> frames = new ArrayList<>();
 
@@ -71,6 +74,7 @@ public class Core {
             board.set(p,6, "§e§m-------------------- ");
         }
 
+        possibleCrafts = new ArrayList<>(Arrays.asList(CraftEnum.values().clone()));
 
         currentScore = 0;
         Main.world.getBlockAt(Main.gameSpawn).setType(Material.AIR);
@@ -107,6 +111,7 @@ public class Core {
     }
 
     public static void end() {
+        possibleCrafts.clear();
         gameEnd = Instant.now();
         foreman.remove();
         for (NMSEntities e : frames) {

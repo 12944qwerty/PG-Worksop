@@ -1,5 +1,6 @@
 package com.blackoutburst.pgworkshop.commands;
 
+import com.blackoutburst.pgworkshop.core.CraftEnum;
 import com.blackoutburst.pgworkshop.main.Main;
 import org.bukkit.command.CommandSender;
 
@@ -27,6 +28,12 @@ public class CommandMaxScore {
 
         Main.maxScore = value;
         sender.sendMessage("§bThe amount of craft needed to complete the game has been set to §6"+value);
+
+        if (Main.maxScore > CraftEnum.values().length && !Main.allowRepeat) {
+            sender.sendMessage("§bRepeating craft has been enabled automatically to prevent running out of craft");
+            Main.allowRepeat = true;
+        }
+
     }
 
 }
