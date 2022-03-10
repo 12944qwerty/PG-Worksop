@@ -1,5 +1,6 @@
 package com.blackoutburst.pgworkshop.main;
 
+import com.blackoutburst.pgworkshop.commands.CommandDelay;
 import com.blackoutburst.pgworkshop.commands.CommandEnd;
 import com.blackoutburst.pgworkshop.commands.CommandMaxScore;
 import com.blackoutburst.pgworkshop.commands.CommandStart;
@@ -11,6 +12,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -49,6 +51,7 @@ public class Main extends JavaPlugin implements Listener {
     public static Location foremanLocation;
     public static boolean gameRunning = false;
     public static int maxScore = 5;
+    public static float timeDelay = 1;
 
     @Override
     public void onDisable() {
@@ -138,8 +141,13 @@ public class Main extends JavaPlugin implements Listener {
                 return;
             }
 
-            Utils.chooseCraft(event.getPlayer());
-            Core.board.set(event.getPlayer(), 13, "Craft: §e"+Core.craftName);
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    Utils.chooseCraft(event.getPlayer());
+                    Core.board.set(event.getPlayer(), 13, "Craft: §e"+Core.craftName);
+                }
+            }.runTaskLater(Main.getPlugin(Main.class), (long)(20L * timeDelay));
             event.setCancelled(true);
         }
     }
@@ -228,6 +236,7 @@ public class Main extends JavaPlugin implements Listener {
             case "start": new CommandStart().execute(sender); break;
             case "end": new CommandEnd().execute(sender); break;
             case "maxscore": new CommandMaxScore().execute(sender, args); break;
+            case "delay": new CommandDelay().execute(sender, args); break;
             default: return (true);
         }
         return (true);

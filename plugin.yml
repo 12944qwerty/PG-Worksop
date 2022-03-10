@@ -8,6 +8,9 @@ commands:
   maxscore:
     description: Set the number of object that must be crafted
     usage: /maxscore <value>
+  delay:
+    description: Change the delay between crafts
+    usage: /delay <value>
   start:
     description: Start the game
     usage: /start
