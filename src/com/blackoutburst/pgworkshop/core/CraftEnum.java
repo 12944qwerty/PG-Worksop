@@ -297,6 +297,11 @@ public enum CraftEnum {
             Material.WOOD, Material.REDSTONE, Material.WOOD,
             Material.WOOD, Material.WOOD, Material.WOOD),
 
+    REDSTONE_TORCH("Redstone torch", Material.REDSTONE_TORCH_ON,
+            Material.REDSTONE, Material.AIR, Material.AIR,
+            Material.STICK, Material.AIR, Material.AIR,
+            Material.AIR, Material.AIR, Material.AIR),
+
     COMPASS("Compass", Material.COMPASS,
             Material.AIR, Material.IRON_INGOT, Material.AIR,
             Material.IRON_INGOT, Material.REDSTONE, Material.IRON_INGOT,
