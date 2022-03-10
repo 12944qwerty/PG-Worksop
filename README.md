@@ -14,6 +14,6 @@ For that you need the party game world and a spigot/paper 1.8 server
 `/end` end the game\
 `/maxscore <value>` set the number of craft you need to complete\
 `/allowRepeat <true/false>` Allow repeating craft\
-`/delay` Change the delay between crafts
+`/delay <value>` Change the delay between crafts
 
 ![2022-02-28_07 59 29](https://user-images.githubusercontent.com/30992311/155938377-0251a685-beba-48ee-85eb-227e4e9f9eca.png)
