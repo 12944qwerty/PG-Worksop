@@ -1,3 +1,5 @@
+![b](https://user-images.githubusercontent.com/30992311/156935618-93128fdb-9ca5-4808-8d1c-28ecea97485e.png)
+
 [![License](https://img.shields.io/github/license/Blackoutburst/PG-Worksop.svg)](LICENSE)
 [![Release](https://img.shields.io/github/release/Blackoutburst/PG-Worksop.svg)](https://github.com/Blackoutburst/PG-Worksop/releases)
 
