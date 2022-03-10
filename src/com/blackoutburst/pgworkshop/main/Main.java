@@ -194,6 +194,9 @@ public class Main extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onEntityDamage(EntityDamageEvent event) {
+        if (event.getEntity().equals(Core.foreman))
+            event.setCancelled(true);
+
         event.setCancelled(gameRunning);
     }
 

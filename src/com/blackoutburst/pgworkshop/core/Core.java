@@ -33,7 +33,7 @@ public class Core {
 
     public static List<NMSEntities> frames = new ArrayList<>();
 
-    private static Villager foreman = null;
+    public static Villager foreman = null;
 
     private static void placeItemFrame() {
         for (Location l : Main.itemFrames) {
