@@ -5,7 +5,8 @@
 
 # PG-Worksop
 
-This is a Minecraft 1.8 plugin who recreate the minigame Workshop from Hypixel Party game
+This is a Minecraft 1.8 plugin who recreate the minigame Workshop from Hypixel Party game\
+Meant to be played alone as it was made for practice purpose
 
 ## How to use
 For that you need the party game world and a spigot/paper 1.8 server
