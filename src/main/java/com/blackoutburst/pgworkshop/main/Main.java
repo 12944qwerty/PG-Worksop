@@ -120,7 +120,7 @@ public class Main extends JavaPlugin implements Listener {
     }
 
     @EventHandler
-    public void onEntityUse(PlayerInteractEntityEvent event) {
+    public final void onEntityUse(final PlayerInteractEntityEvent event) {
         if (!gameRunning) return;
         if (event.getRightClicked().getType().equals(EntityType.VILLAGER)) {
             event.setCancelled(true);
