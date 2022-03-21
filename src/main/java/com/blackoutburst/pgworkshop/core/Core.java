@@ -117,6 +117,7 @@ public class Core {
         for (NMSEntities e : frames) {
             for (Player p : Bukkit.getOnlinePlayers()) {
                 NMSEntityDestroy.send(p, e.getID());
+                p.setGameMode(GameMode.ADVENTURE);
             }
         }
         frames.clear();
