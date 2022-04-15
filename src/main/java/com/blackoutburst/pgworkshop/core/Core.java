@@ -113,7 +113,7 @@ public class Core {
     public static void end() {
         possibleCrafts.clear();
         gameEnd = Instant.now();
-        foreman.remove();
+        foreman.setHealth(0);
         for (NMSEntities e : frames) {
             for (Player p : Bukkit.getOnlinePlayers()) {
                 NMSEntityDestroy.send(p, e.getID());
