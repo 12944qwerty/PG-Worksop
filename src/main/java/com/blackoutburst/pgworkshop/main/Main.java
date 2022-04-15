@@ -124,29 +124,30 @@ public class Main extends JavaPlugin implements Listener {
         if (!gameRunning) return;
         if (event.getRightClicked().getType().equals(EntityType.VILLAGER)) {
             event.setCancelled(true);
-        }
-        if (event.getRightClicked().getType().equals(EntityType.VILLAGER) &&
-            event.getPlayer().getInventory().contains(Core.requiredItem)) {
-            Core.craftEnd = Instant.now();
-            event.getPlayer().getInventory().clear();
-            world.playSound(event.getPlayer().getLocation(), Sound.LEVEL_UP, 3f, 1f);
-            event.getPlayer().sendMessage("§aYou completed this craft in: §b"+Utils.ROUND.format(((float) Duration.between(Core.craftBegin, Core.craftEnd).toMillis() / 1000.0f))+"s");
-            Core.currentScore++;
-            Core.board.set(event.getPlayer(), 11, "Progress: §a"+Core.currentScore+"/"+Main.maxScore);
-            if (Core.currentScore >= maxScore) {
-                event.setCancelled(true);
-                Core.end();
-                return;
-            }
-
-            new BukkitRunnable() {
-                @Override
-                public void run() {
-                    Utils.chooseCraft(event.getPlayer());
-                    Core.board.set(event.getPlayer(), 13, "Craft: §e"+Core.craftName);
+            if (event.getPlayer().getInventory().contains(Core.requiredItem)) {
+                Core.craftEnd = Instant.now();
+                event.getPlayer().getInventory().clear();
+                world.playSound(event.getPlayer().getLocation(), Sound.LEVEL_UP, 3f, 1f);
+                event.getPlayer().sendMessage("§aYou completed this craft in: §b"+Utils.ROUND.format(((float) Duration.between(Core.craftBegin, Core.craftEnd).toMillis() / 1000.0f))+"s");
+                Core.currentScore++;
+                Core.board.set(event.getPlayer(), 11, "Progress: §a"+Core.currentScore+"/"+Main.maxScore);
+                if (Core.currentScore >= maxScore) {
+                    event.setCancelled(true);
+                    Core.end();
+                    return;
                 }
-            }.runTaskLater(Main.getPlugin(Main.class), (long)(20L * timeDelay));
-            event.setCancelled(true);
+
+                new BukkitRunnable() {
+                    @Override
+                    public void run() {
+                        Utils.chooseCraft(event.getPlayer());
+                        Core.board.set(event.getPlayer(), 13, "Craft: §e"+Core.craftName);
+                    }
+                }.runTaskLater(Main.getPlugin(Main.class), (long)(20L * timeDelay));
+                event.setCancelled(true);
+            } else {
+                event.getPlayer().sendMessage("§aThat's not what I need! I need a "+Core.craftName+"! Look at the wall next to me to see the recipe!");
+            }
         }
     }
 
